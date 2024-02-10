@@ -10,10 +10,11 @@ export default {
         text2: "#E0E0E0",
         text_hint: "#4D4D4D",
         text_link: "#88AAA3",
+        focus_border: "#43675B",
         white: "#ffffff",
         grey: "#6D6D6D",
         dark_grey: "#0A0910",
-      },
+      }
     },
   },
   plugins: [],
