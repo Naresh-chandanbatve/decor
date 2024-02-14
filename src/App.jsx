@@ -8,9 +8,22 @@ import ServicesPage from "./pages/ServicesPage.jsx";
 import AddService from "./pages/AddService.jsx";
 import ViewService from "./pages/ViewService.jsx";
 import MyOrders from "./pages/MyOrders.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function forgotPassword() {
   return (
     <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/reset" element={<ResetPassword />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/add" element={<AddService />} />
+          <Route path="/view" element={<ViewService />} />
+          <Route path="/myorders" element={<MyOrders />} />
+        </Routes>
+      </BrowserRouter>
       {/* <LandingPage/> */}
       {/* <ResetPassword/> */}
       {/* <ForgotPassword /> */}
@@ -18,7 +31,7 @@ function forgotPassword() {
       {/* <ServicesPage /> */}
       {/* <AddService/> */}
       {/* <ViewService/> */}
-      <MyOrders/>
+      {/* <MyOrders/> */}
     </>
   );
 }
