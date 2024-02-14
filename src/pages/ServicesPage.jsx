@@ -3,6 +3,7 @@ import { Input, Box, flexbox } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import Footer from "../components/LandingPage/Footer";
+import { Link } from "react-router-dom";
 
 function ServicesPage() {
   return (
@@ -10,12 +11,12 @@ function ServicesPage() {
     {/* 17201E */}
     {/*  */}
       <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
-        <ChevronLeftIcon
+        <Link to="/" style={{color:"white"}}><ChevronLeftIcon
           viewBox="8 0 30 30"
           boxSize={60}
           float={"left"}
           className="mx-[2rem] mt-[2vh] "
-        />
+        /></Link>
         <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
           Services
         </div>

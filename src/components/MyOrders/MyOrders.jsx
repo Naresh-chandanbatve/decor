@@ -17,70 +17,67 @@ import { IconButton } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { HiOutlineUpload } from "react-icons/hi";
 import Footer from "../LandingPage/Footer";
+import { PiDivide } from "react-icons/pi";
+import { color } from "framer-motion";
 
 function MyOrders() {
-  const [activeLink, setActiveLink] = useState("/"); // Initially set the active link
+  const [activeState, setActiveState] = useState(true); // Initially set the active link
 
-  const handleLinkClick = (path) => {
-    setActiveLink(path);
+  const handleStateClick = () => {
+    setActiveState(!activeState);
   };
   return (
     <div className="bg-[#0D1412] h-screen">
       <div className="flex flex-row w-screen  bg-opacity-[72%]">
-        <ChevronLeftIcon
+        <Link to="/" style={{ color: 'white' }}><ChevronLeftIcon
           viewBox="8 0 30 30"
+          color="white"
+          fill="white"
           boxSize={60}
           float={"left"}
-          className="mx-[2rem] mt-[2vh] "
-        />
+          className="mx-[2rem] mt-[2vh]"
+        /></Link> 
         <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
           My Orders
         </div>
       </div>
       {/* className="" */}
-      <Router>
         <nav className=" text-white flex flex-row justify-between items-center">
-          <Link
-            to="/"
-            className={`${
-              activeLink === "/"
+          <div
+            className={`${activeState
                 ? "nav-link text-xl active text-[#E4E4E4] hover:text-[#E4E4E4] "
                 : "nav-link text-xl text-[#666666] "
             }transition-all duration-300`}
-            onClick={() => handleLinkClick("/")}
+            onClick={() => handleStateClick()}
           >
             Active
             <Divider
               width="25vw"
               className={`${
-                activeLink === "/" ? "" : "hidden"
+                activeState ? "" : "hidden"
               } bg-[#E4E4E4]  h-[0.1vh] mx-auto`}
             />
-          </Link>
-          <Link
-            to="/past"
+          </div>
+          <div
             className={`${
-              activeLink === "/past"
+              !activeState
                 ? "nav-link text-xl text-[#E4E4E4] hover:text-[#E4E4E4] "
                 : "nav-link text-xl text-[#666666] "
             } transition-all duration-300`}
-            onClick={() => handleLinkClick("/past")}
+            onClick={() => handleStateClick()}
           >
             Past
             <Divider
               width="25vw"
               className={`${
-                activeLink === "/past" ? "" : "hidden"
+                !activeState ? "" : "hidden"
               } bg-[#E4E4E4] h-[0.1vh] mx-auto`}
             />
-          </Link>
+          </div>
         </nav>
         <Divider width="95vw" className="bg-[#515151] h-[.10vh] m-auto" />
-        <Routes>
-          <Route path="/" element={ <Active/>} />
-          <Route path="/past" element={ <Past/>} />
-        </Routes>
-      </Router>
+      
+      {activeState ? <Active/> : <Past/>}
      
     </div>
   );

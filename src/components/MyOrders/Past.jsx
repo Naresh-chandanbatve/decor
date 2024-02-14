@@ -24,12 +24,19 @@ function Past() {
             <div className="text-left h-fit text-white">Rinjani Villa</div>
             <div className="flex flex-row h-fit">
               <IoLocationSharp />
-              <div className="text-xs text-left text-[#CAC4C4]">Koka Jungle Bhandara</div>
+              <div className="text-xs text-left text-[#CAC4C4]">
+                Koka Jungle Bhandara
+              </div>
             </div>
-            <div className="text-left h-fit text-[#E8E8E8]">8 April - 9 April</div>
+            <div className="text-left h-fit text-[#E8E8E8]">
+              8 April - 9 April
+            </div>
           </div>
           <div className="flex flex-col justify-between">
-            <div className="flex flex-row"><div className="text-left text-xs">33 am - 10 am</div><FaRegClock size={18} className="ml-[2vw]"/></div>
+            <div className="flex flex-row">
+              <div className="text-left text-xs">33 am - 10 am</div>
+              <FaRegClock size={18} className="ml-[2vw]" />
+            </div>
             <div className="text-right text-lg text-white">₹ 23,000</div>
           </div>
         </div>
@@ -52,12 +59,19 @@ function Past() {
             <div className="text-left h-fit text-white">Rinjani Villa</div>
             <div className="flex flex-row h-fit">
               <IoLocationSharp />
-              <div className="text-xs text-left text-[#CAC4C4]">Koka Jungle Bhandara</div>
+              <div className="text-xs text-left text-[#CAC4C4]">
+                Koka Jungle Bhandara
+              </div>
             </div>
-            <div className="text-left h-fit text-[#E8E8E8]">8 April - 9 April</div>
+            <div className="text-left h-fit text-[#E8E8E8]">
+              8 April - 9 April
+            </div>
           </div>
           <div className="flex flex-col justify-between">
-            <div className="flex flex-row"><div className="text-left text-xs">33 am - 10 am</div><FaRegClock size={18} className="ml-[2vw]"/></div>
+            <div className="flex flex-row">
+              <div className="text-left text-xs">33 am - 10 am</div>
+              <FaRegClock size={18} className="ml-[2vw]" />
+            </div>
             <div className="text-right text-lg text-white">₹ 23,000</div>
           </div>
         </div>
@@ -79,12 +93,19 @@ function Past() {
             <div className="text-left h-fit text-white">Rinjani Villa</div>
             <div className="flex flex-row h-fit">
               <IoLocationSharp />
-              <div className="text-xs text-left text-[#CAC4C4]">Koka Jungle Bhandara</div>
+              <div className="text-xs text-left text-[#CAC4C4]">
+                Koka Jungle Bhandara
+              </div>
             </div>
-            <div className="text-left h-fit text-[#E8E8E8]">8 April - 9 April</div>
+            <div className="text-left h-fit text-[#E8E8E8]">
+              8 April - 9 April
+            </div>
           </div>
           <div className="flex flex-col justify-between">
-            <div className="flex flex-row"><div className="text-left text-xs">33 am - 10 am</div><FaRegClock size={18} className="ml-[2vw]"/></div>
+            <div className="flex flex-row">
+              <div className="text-left text-xs">33 am - 10 am</div>
+              <FaRegClock size={18} className="ml-[2vw]" />
+            </div>
             <div className="text-right text-lg text-white">₹ 23,000</div>
           </div>
         </div>
@@ -106,12 +127,19 @@ function Past() {
             <div className="text-left h-fit text-white">Rinjani Villa</div>
             <div className="flex flex-row h-fit">
               <IoLocationSharp />
-              <div className="text-xs text-left text-[#CAC4C4]">Koka Jungle Bhandara</div>
+              <div className="text-xs text-left text-[#CAC4C4]">
+                Koka Jungle Bhandara
+              </div>
             </div>
-            <div className="text-left h-fit text-[#E8E8E8]">8 April - 9 April</div>
+            <div className="text-left h-fit text-[#E8E8E8]">
+              8 April - 9 April
+            </div>
           </div>
           <div className="flex flex-col justify-between">
-            <div className="flex flex-row"><div className="text-left text-xs">33 am - 10 am</div><FaRegClock size={18} className="ml-[2vw]"/></div>
+            <div className="flex flex-row">
+              <div className="text-left text-xs">33 am - 10 am</div>
+              <FaRegClock size={18} className="ml-[2vw]" />
+            </div>
             <div className="text-right text-lg text-white">₹ 23,000</div>
           </div>
         </div>
@@ -133,17 +161,23 @@ function Past() {
             <div className="text-left h-fit text-white">Rinjani Villa</div>
             <div className="flex flex-row h-fit">
               <IoLocationSharp />
-              <div className="text-xs text-left text-[#CAC4C4]">Koka Jungle Bhandara</div>
+              <div className="text-xs text-left text-[#CAC4C4]">
+                Koka Jungle Bhandara
+              </div>
             </div>
-            <div className="text-left h-fit text-[#E8E8E8]">8 April - 9 April</div>
+            <div className="text-left h-fit text-[#E8E8E8]">
+              8 April - 9 April
+            </div>
           </div>
           <div className="flex flex-col justify-between">
-            <div className="flex flex-row"><div className="text-left text-xs">33 am - 10 am</div><FaRegClock size={18} className="ml-[2vw]"/></div>
+            <div className="flex flex-row">
+              <div className="text-left text-xs">33 am - 10 am</div>
+              <FaRegClock size={18} className="ml-[2vw]" />
+            </div>
             <div className="text-right text-lg text-white">₹ 23,000</div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

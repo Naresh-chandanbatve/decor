@@ -3,7 +3,7 @@ import Navbar from "../components/LandingPage/NavBar";
 import Sidebar from "../components/LandingPage/SideBar";
 import { Button } from "@chakra-ui/react";
 import Footer from "../components/LandingPage/Footer";
-
+import { Link } from "react-router-dom";
 import Swiper from "swiper";
 
 const swiper = new Swiper(".your-carousel-container", {
@@ -167,7 +167,13 @@ function LandingPage() {
             <div className="text-2xl text-left ml-[3vh] basis-3/4">
               Services
             </div>
-            <div className="self-center text-[#B9B6B6]">View All</div>
+            <Link
+              to="/services"
+              style={{ color: "#B9B6B6" }}
+              className="self-center text-[#B9B6B6]"
+            >
+              View All
+            </Link>
           </div>
           <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-screen">
             {jsonData.map((item) => (
