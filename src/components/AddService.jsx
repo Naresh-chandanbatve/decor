@@ -18,7 +18,7 @@ function AddService() {
     }
   };
 
-  const defaultImageUrl = "../src/assets/23.png";
+  const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
 
   return (
     <>

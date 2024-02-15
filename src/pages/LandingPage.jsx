@@ -36,7 +36,6 @@ function LandingPage() {
     setIsNav(!isNav);
   };
 
-  const imagePatht = "/assets/dj.png";
 
   // component
   const MyComponent = ({ data }) => {
@@ -44,7 +43,7 @@ function LandingPage() {
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2">
         <img
-          src={imagePatht}
+          src={imagePath}
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
