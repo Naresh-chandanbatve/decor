@@ -36,7 +36,7 @@ function LandingPage() {
     setIsNav(!isNav);
   };
 
-  const imagePatht = "/dist/assets/dj-BPce03oC.png";
+  const imagePatht = "/assets/dj-BPce03oC.png";
 
   // component
   const MyComponent = ({ data }) => {
