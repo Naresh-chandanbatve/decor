@@ -77,14 +77,14 @@ function LandingPage() {
       id: 2,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "./assets/dj.png",
+      imagePath: "/assets/dj.png",
     },
     ,
     {
       id: 3,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "../src/assets/23.png",
+      imagePath: "../assets/23.png",
     },
     // ... more data items
   ];
