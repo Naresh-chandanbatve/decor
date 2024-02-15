@@ -6,6 +6,7 @@ import { IconButton } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { HiOutlineUpload } from "react-icons/hi";
 import Footer from "./LandingPage/Footer";
+import { Link } from "react-router-dom";
 
 function AddService() {
   const [selectedFile, setSelectedFile] = useState(null);

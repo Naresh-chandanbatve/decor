@@ -25,7 +25,7 @@ function ViewService() {
     }
   };
 
-  const defaultImageUrl = "../src/assets/23.png";
+  const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
 
   return (
     <div className=" h-screen bg-gradient-to-tl from-[#1A1F1D] from-20% via-[#0A0E0D]/88 via-60% to-[#0A0E0D]/81">
