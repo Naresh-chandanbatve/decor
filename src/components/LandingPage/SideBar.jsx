@@ -19,14 +19,14 @@ function Sidebar({ toggleNav }) {
         />
         <div className="text-lg mx-[4vw]">My Profile</div>
       </Link>
-      <div className="flex flex-row my-3  mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
+      <Link to="/view" style={{ color: 'white' }} className="flex flex-row my-3  mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
         <Icon
           boxSize={30}
           as={PiShoppingCartSimpleFill}
           className="justify-self-start mx-[4vw]"
         />
         <div className="text-lg mx-[4vw]">Cart</div>
-      </div>
+      </Link>
       <Link to="/myorders" style={{ color: 'white' }} className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
         <Icon
           boxSize={30}
@@ -35,7 +35,7 @@ function Sidebar({ toggleNav }) {
         />
         <div className="text-lg mx-[4vw]">My Orders</div>
       </Link>
-      <Link to="/myorders" style={{ color: 'white' }} className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
+      <Link to="/add" style={{ color: 'white' }} className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
         <Icon
           boxSize={30}
           as={RiLogoutCircleLine}
