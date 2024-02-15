@@ -113,7 +113,7 @@ function MyCart() {
           />
         </Link>
         <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
-          My Orders
+          My Cart
         </div>
         <Link
           to="/"
@@ -149,7 +149,7 @@ function MyCart() {
         <Button
           padding={0}
           background="#6CA18F"
-          className="rounded-full w-[90vw] h-[6.4vh] "
+          className="rounded-xl w-[90vw] h-[6.4vh] "
         >
           <p className="mx-4">Checkout</p>
         </Button>
