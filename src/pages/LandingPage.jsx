@@ -78,7 +78,7 @@ function LandingPage() {
       id: 2,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "/assets/dj.webp",
+      imagePath: "../src/assets/dj.webp",
     },
     ,
     {
