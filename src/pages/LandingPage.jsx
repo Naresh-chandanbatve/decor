@@ -36,7 +36,7 @@ function LandingPage() {
     setIsNav(!isNav);
   };
 
-  const imagePatht = "/assets/dj-BPce03oC.png";
+  const imagePatht = "/assets/dj.png";
 
   // component
   const MyComponent = ({ data }) => {
@@ -46,6 +46,7 @@ function LandingPage() {
         <img
           src={imagePatht}
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
+          unoptimized
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
           <div className="w-fit align-self-top mx-2 pb-2">{data.price}</div>
