@@ -71,20 +71,20 @@ function LandingPage() {
       id: 1,
       title: "Item 1",
       price: "This is description 1",
-      imagePath: "../src/assets/23.png",
+      imagePath: "./assets/23.png",
     },
     {
       id: 2,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "../src/assets/dj.png",
+      imagePath: "./assets/dj.png",
     },
     ,
     {
       id: 3,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "../src/assets/23.png",
+      imagePath: "./src/assets/23.png",
     },
     // ... more data items
   ];
