@@ -23,13 +23,13 @@ function AddService() {
   return (
     <>
       <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
-        {" "}
-        <ChevronLeftIcon
+      <Link to="/" style={{ color: 'white' }}><ChevronLeftIcon
           viewBox="8 0 30 30"
           boxSize={60}
           float={"left"}
           className="mx-[2.4rem] mt-[2vh]"
         />
+        </Link>
       </div>
 
       <div>
