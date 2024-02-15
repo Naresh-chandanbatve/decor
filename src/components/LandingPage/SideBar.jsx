@@ -19,7 +19,7 @@ function Sidebar({ toggleNav }) {
         />
         <div className="text-lg mx-[4vw]">My Profile</div>
       </Link>
-      <Link to="/view" style={{ color: 'white' }} className="flex flex-row my-3  mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
+      <Link to="/mycart" style={{ color: 'white' }} className="flex flex-row my-3  mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]">
         <Icon
           boxSize={30}
           as={PiShoppingCartSimpleFill}

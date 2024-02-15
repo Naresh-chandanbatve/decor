@@ -3,7 +3,7 @@ import Navbar from "../components/LandingPage/NavBar";
 import Sidebar from "../components/LandingPage/SideBar";
 import { Button } from "@chakra-ui/react";
 import Footer from "../components/LandingPage/Footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swiper from "swiper";
 
 const swiper = new Swiper(".your-carousel-container", {
@@ -35,7 +35,6 @@ function LandingPage() {
   const toggleNav = () => {
     setIsNav(!isNav);
   };
-
 
   // component
   const MyComponent = ({ data }) => {
@@ -71,21 +70,24 @@ function LandingPage() {
     {
       id: 1,
       title: "Item 1",
-      price: "This is description 1",
+      price: "3000",
       imagePath: "/assets/23-CYX5G_Ke.png",
+      description: "short one here",
     },
     {
       id: 2,
       title: "Item 2",
-      price: "This is description 2",
+      price: "3000",
       imagePath: "/assets/dj-BPce03oC.png",
+      description: "short one here",
     },
     ,
     {
       id: 3,
       title: "Item 2",
-      price: "This is description 2",
+      price: "3000",
       imagePath: "/assets/23-CYX5G_Ke.png",
+      description: "short one here",
     },
     // ... more data items
   ];
@@ -178,7 +180,12 @@ function LandingPage() {
           </div>
           <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-screen">
             {jsonData.map((item) => (
-              <MyComponent key={item.id} data={item} />
+              <Link
+                to={`/view?id=${item.id}`}
+                style={{ color: "white" }}
+              >
+                <MyComponent key={item.id} data={item} />
+              </Link>
             ))}
           </div>
         </div>

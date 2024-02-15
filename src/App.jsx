@@ -1,6 +1,6 @@
 import "./App.css";
 import LandingPage from "./pages/LandingPage.jsx";
-
+import MyCart from "./pages/MyCart.jsx";
 import Auth from "./pages/authPages/AuthPage.jsx";
 import ForgotPassword from "./pages/authPages/ForgotPassowrd.jsx";
 import ResetPassword from "./pages/authPages/ResetPassword.jsx";
@@ -24,16 +24,9 @@ function forgotPassword() {
           <Route path="/view" element={<ViewService />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/mycart" element={<MyCart />} />
         </Routes>
       </BrowserRouter>
-      {/* <LandingPage/> */}
-      {/* <ResetPassword/> */}
-      {/* <ForgotPassword /> */}
-      {/* <Auth/> */}
-      {/* <ServicesPage /> */}
-      {/* <AddService/> */}
-      {/* <ViewService/> */}
-      {/* <MyOrders/> */}
     </>
   );
 }
