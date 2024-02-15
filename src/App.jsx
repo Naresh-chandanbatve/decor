@@ -10,6 +10,7 @@ import ViewService from "./pages/ViewService.jsx";
 import MyOrders from "./pages/MyOrders.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyProfile from "./pages/MyProfile.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
 function forgotPassword() {
   return (
     <>
@@ -25,6 +26,7 @@ function forgotPassword() {
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/myprofile" element={<MyProfile />} />
           <Route path="/mycart" element={<MyCart />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </BrowserRouter>
     </>

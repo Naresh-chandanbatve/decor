@@ -3,7 +3,7 @@ import Navbar from "../components/LandingPage/NavBar";
 import Sidebar from "../components/LandingPage/SideBar";
 import { Button } from "@chakra-ui/react";
 import Footer from "../components/LandingPage/Footer";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swiper from "swiper";
 
 const swiper = new Swiper(".your-carousel-container", {
@@ -46,8 +46,8 @@ function LandingPage() {
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
-          <div className="w-fit align-self-top mx-2 pb-2">{data.price}</div>
-          <div className="text-xs w-fit mx-2 text-left">{data.title}</div>
+          <div className="w-fit align-self-top mx-2 pb-2">₹ {data.price}</div>
+          <div className="text-xs w-fit mx-2 text-left">₹ {data.title}</div>
         </div>
       </div>
     );
@@ -69,14 +69,14 @@ function LandingPage() {
   const jsonData = [
     {
       id: 1,
-      title: "Item 1",
+      title: "Small Birthday Decoration",
       price: "3000",
       imagePath: "/assets/23-CYX5G_Ke.png",
-      description: "short one here",
+      description: "thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description ",
     },
     {
       id: 2,
-      title: "Item 2",
+      title: "Merrage Sound System",
       price: "3000",
       imagePath: "/assets/dj-BPce03oC.png",
       description: "short one here",
