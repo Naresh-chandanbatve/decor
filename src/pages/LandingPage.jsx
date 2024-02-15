@@ -46,7 +46,6 @@ function LandingPage() {
         <img
           src={imagePatht}
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
-          unoptimized
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
           <div className="w-fit align-self-top mx-2 pb-2">{data.price}</div>
@@ -74,20 +73,20 @@ function LandingPage() {
       id: 1,
       title: "Item 1",
       price: "This is description 1",
-      imagePath: "./assets/23.png",
+      imagePath: "/assets/23-CYX5G_Ke.png",
     },
     {
       id: 2,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "/assets/dj.png",
+      imagePath: "/assets/dj-BPce03oC.png",
     },
     ,
     {
       id: 3,
       title: "Item 2",
       price: "This is description 2",
-      imagePath: "../assets/23.png",
+      imagePath: "/assets/23-CYX5G_Ke.png",
     },
     // ... more data items
   ];

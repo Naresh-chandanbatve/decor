@@ -42,7 +42,7 @@ function ServicesPage() {
       <div className="grid grid-cols-2 w-[93vw] h-[60vh] pb-[1vh] pt-[1vh] m-auto mb-[10vh] overflow-y-scroll justify-items-center">
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#1a2421] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -54,7 +54,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -66,7 +66,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -78,7 +78,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -90,7 +90,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -102,7 +102,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -114,7 +114,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -126,7 +126,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -138,7 +138,7 @@ function ServicesPage() {
         </div>
         <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2">
           <img
-            src="./src/assets/dj.png"
+            src="public/assets/dj-BPce03oC.png"
             className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
           ></img>
           <div className="flex flex-col-reverse flex-grow justify-items-start">

@@ -31,7 +31,7 @@ function MyProfile() {
       </div>
 
       <img
-        src="../src/assets/dj.png"
+        src="/assets/dj-BPce03oC.png"
         className="m-auto rounded-full w-[35.73vw] h-[35.73vw] mt-[4vh]"
       ></img>
       <div className="text-2xl font-bold mt-[2vh]">Name Lastname</div>
