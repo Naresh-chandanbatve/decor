@@ -43,7 +43,7 @@ function LandingPage() {
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2">
         <img
-          src={imagePath}
+          src={data.imagePath}
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
