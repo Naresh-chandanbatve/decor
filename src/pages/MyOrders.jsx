@@ -1,6 +1,6 @@
-import React from "react";
+import React , {lazy}from "react";
 
-import MyOrders from "../components/MyOrders/MyOrders";
+const MyOrders = lazy( () => import("../components/MyOrders/MyOrders"));
 
 function Myorders() {
   return (

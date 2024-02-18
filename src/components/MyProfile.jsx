@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { MdEdit } from "react-icons/md";
-import { Input, Button, Textarea } from "@chakra-ui/react";
+import { Input, Textarea } from "@chakra-ui/react";
 
 function MyProfile() {
   return (

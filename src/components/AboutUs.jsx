@@ -106,7 +106,7 @@ function AboutUs() {
           grand celebrations, we elevate your events with meticulous
           craftsmanship, innovative solutions, and unwavering dedication.
         </div>
-        <div className="text-left mt-[5vh] mx-3">What Sets Us Apart</div>
+        <div className="text-left mt-[5vh] mx-5">What Sets Us Apart</div>
         <div className="text-justify mb-[5vh] mt-[2vh] mx-5">
           <ul>
             <li>

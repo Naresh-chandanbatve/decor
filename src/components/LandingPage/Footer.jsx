@@ -2,19 +2,23 @@ import React from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiFacebookCircleLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    // 171E1C
-    // 322D2D
     <div className="bg-[#171E1C] bg-opacity-[42%] pb-[3vh]">
       <div>
+        <Link to="https://wa.me/8412025448" style={{ color: "white" }}>
         <div className="border-b-[1px] border-[#8B8B8B] py-[1.5vh]">
           Contact
         </div>
-        <div className="border-b-[1px] border-[#8B8B8B] py-[1.5vh]">
-          About Us
-        </div>
+        </Link>
+        <Link to="/aboutus" style={{ color: "white" }}>
+          <div className="border-b-[1px] border-[#8B8B8B] py-[1.5vh]">
+            About Us
+          </div>
+        </Link>
+
         <div className="border-b-[1px] border-[#8B8B8B] py-[1.5vh]">Career</div>
         <div className="border-b-[1px] border-[#8B8B8B] py-[1.5vh]">
           Terms and Conditions

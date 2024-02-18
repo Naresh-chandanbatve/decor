@@ -1,6 +1,6 @@
-import React from "react";
+import React, {lazy} from "react";
 
-import AddService from "../components/AddService.jsx";
+const AddService  = lazy( () => import("../components/AddService.jsx"));
 
 function Addservice() {
     return (

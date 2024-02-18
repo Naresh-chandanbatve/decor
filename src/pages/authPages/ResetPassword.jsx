@@ -1,5 +1,5 @@
-import React from "react";
-import ResetPassword from "../../components/AuthPage/ResetPassword";
+import React ,{lazy}from "react";
+const ResetPassword = lazy( () => import("../../components/AuthPage/ResetPassword"));
 
 
 function resetPassword() {

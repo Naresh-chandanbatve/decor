@@ -1,9 +1,8 @@
-import React from "react";
-import { Input, Box, flexbox } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import React, {lazy} from "react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import Footer from "../components/LandingPage/Footer";
 import { Link } from "react-router-dom";
+
+const Footer = lazy( () => import("../components/LandingPage/Footer"));
 
 function ServicesPage() {
   return (

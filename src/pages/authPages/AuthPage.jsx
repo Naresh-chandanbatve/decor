@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, lazy } from "react";
 
-import SignInPage from "../../components/AuthPage/SignInPage";
-import SignUpPage from "../../components/AuthPage/SignUpPage";
 
+const SignInPage = lazy( () => import("../../components/AuthPage/SignInPage"));
+const SignUpPage  = lazy( () => import("../../components/AuthPage/SignUpPage"));
 function AuthForm() {
   const [isSignIn, setIsSignIn] = useState(true);
 

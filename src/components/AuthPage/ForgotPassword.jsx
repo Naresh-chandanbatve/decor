@@ -2,11 +2,20 @@ import React from "react";
 import { Input, Box, flexbox } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 function ForgotPassword() {
   return (
     <>
-      <ChevronLeftIcon viewBox="8 0 30 30" boxSize={60} float={"left"} className="mx-[2rem] mt-[3vh]"/>
+      <Link to="/auth" style={{ color: "white" }}>
+        <ChevronLeftIcon
+          viewBox="8 0 30 30"
+          boxSize={60}
+          float={"left"}
+          className="mx-[2rem] mt-[3vh]"
+        />
+      </Link>
+
       <div className="w-fit text-2xl mt-[14vh] font-bold text-left mx-[2rem]">
         Forgot Password
       </div>

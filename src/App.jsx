@@ -1,36 +1,52 @@
 import "./App.css";
-import LandingPage from "./pages/LandingPage.jsx";
-import MyCart from "./pages/MyCart.jsx";
-import Auth from "./pages/authPages/AuthPage.jsx";
-import ForgotPassword from "./pages/authPages/ForgotPassowrd.jsx";
-import ResetPassword from "./pages/authPages/ResetPassword.jsx";
-import ServicesPage from "./pages/ServicesPage.jsx";
-import AddService from "./pages/AddService.jsx";
-import ViewService from "./pages/ViewService.jsx";
-import MyOrders from "./pages/MyOrders.jsx";
+import React, { useState, createContext,Suspense, useContext, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MyProfile from "./pages/MyProfile.jsx";
-import AboutUs from "./pages/AboutUs.jsx";
-function forgotPassword() {
+import load from '../src/assets/tube-spinner.svg'
+
+const LandingPage = lazy(() => import("./pages/LandingPage.jsx"));
+const MyCart = lazy(() => import("./pages/MyCart.jsx"));
+const Auth = lazy(() => import("./pages/authPages/AuthPage.jsx"));
+const ForgotPassword = lazy(() =>
+  import("./pages/authPages/ForgotPassowrd.jsx")
+);
+const ResetPassword = lazy(() => import("./pages/authPages/ResetPassword.jsx"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage.jsx"));
+const AddService = lazy(() => import("./pages/AddService.jsx"));
+const ViewService = lazy(() => import("./pages/ViewService.jsx"));
+const MyOrders = lazy(() => import("./pages/MyOrders.jsx"));
+const MyProfile = lazy(() => import("./pages/MyProfile.jsx"));
+const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
+
+const AuthContext = createContext(null);
+function App() {
+  const [loginType, setLoginType] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/forgot" element={<ForgotPassword />} />
-          <Route path="/reset" element={<ResetPassword />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/add" element={<AddService />} />
-          <Route path="/view" element={<ViewService />} />
-          <Route path="/myorders" element={<MyOrders />} />
-          <Route path="/myprofile" element={<MyProfile />} />
-          <Route path="/mycart" element={<MyCart />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthContext.Provider
+        value={{ loginType, setLoginType, isLoggedIn, setIsLoggedIn }}
+      >
+        <BrowserRouter>
+          <Suspense fallback={<div className="grid h-screen items-center"><img src={load} height={100} width={100}></img></div>}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
+            <Route path="/reset" element={<ResetPassword />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/add" element={<AddService />} />
+            <Route path="/view" element={<ViewService />} />
+            <Route path="/myorders" element={<MyOrders />} />
+            <Route path="/myprofile" element={<MyProfile />} />
+            <Route path="/mycart" element={<MyCart />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+          </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </AuthContext.Provider>
     </>
   );
 }
 
-export default forgotPassword;
+export default App;
+export { AuthContext };

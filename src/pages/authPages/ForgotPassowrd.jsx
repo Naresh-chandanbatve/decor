@@ -1,6 +1,6 @@
-import React from "react";
+import React,{lazy} from "react";
 
-import ForgotPassword from "../../components/AuthPage/ForgotPassword";
+const ForgotPassword = lazy( () => import("../../components/AuthPage/ForgotPassword"));
 
 function forgotPassword() {
     return (

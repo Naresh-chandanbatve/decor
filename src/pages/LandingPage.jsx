@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
-import Navbar from "../components/LandingPage/NavBar";
-import Sidebar from "../components/LandingPage/SideBar";
+import React,{ useState,lazy, useRef} from "react";
 import { Button } from "@chakra-ui/react";
-import Footer from "../components/LandingPage/Footer";
 import { Link } from "react-router-dom";
 import Swiper from "swiper";
+
+const Navbar  = lazy( () => import("../components/LandingPage/NavBar"));
+const  Sidebar = lazy( () => import("../components/LandingPage/SideBar"));
+const Footer = lazy( () => import("../components/LandingPage/Footer"));
 
 const swiper = new Swiper(".your-carousel-container", {
   // Your Swiper options here
@@ -104,8 +105,10 @@ function LandingPage() {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+  
 
   return (
+    
     <>
       <div
         onClick={handleWhatsapp}

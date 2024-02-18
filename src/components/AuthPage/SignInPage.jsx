@@ -3,8 +3,13 @@ import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import google from "../../assets/google.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../App";
 
 function SignInPage({ toggleForm }) {
+  const nav = useNavigate();
+  const { setLoginType, setIsLoggedIn } = useContext(AuthContext);
   return (
     <>
       <div className="w-fit text-5xl mt-[10vh] font-bold mx-[2rem]">
@@ -38,7 +43,10 @@ function SignInPage({ toggleForm }) {
         backgroundColor="black"
         alt="password"
       ></Input>
-      <p className="text-[#88AAA3] mt-[1vh]">Forgot password</p>
+      <Link to="/forgot">
+        <p className="text-[#88AAA3] mt-[1vh]">Forgot password</p>
+      </Link>
+
       <Button
         background="#6CA18F"
         className="rounded-full w-[67.73vw] mt-[3vh]"
@@ -67,6 +75,10 @@ function SignInPage({ toggleForm }) {
         />
       </div>
       <Button
+        onClick={() => {
+          setIsLoggedIn(true);
+          setLoginType("user"), nav("/");
+        }}
         padding={0}
         background="#6CA18F"
         className="rounded-full w-fit mt-[3vh]"

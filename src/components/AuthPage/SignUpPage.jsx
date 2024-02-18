@@ -3,12 +3,19 @@ import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import google from "../../assets/google.png";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../App";
 
 function SignUpPage({ toggleForm }) {
+  const nav = useNavigate();
+  const { setLoginType, setIsLoggedIn } = useContext(AuthContext);
   return (
     <>
       <div className="w-fit text-5xl mt-[4vh] font-bold mx-[2rem]">Sign Up</div>
-      <div className="w-fit mt-[1vh] mx-[2rem]">Create an account to get started</div>
+      <div className="w-fit mt-[1vh] mx-[2rem]">
+        Create an account to get started
+      </div>
       <Input
         variant="outline"
         paddingLeft={20}
@@ -86,6 +93,10 @@ function SignUpPage({ toggleForm }) {
         />
       </div>
       <Button
+        onClick={() => {
+          setIsLoggedIn(true);
+          setLoginType("admin"), nav("/");
+        }}
         padding={0}
         background="#6CA18F"
         className="rounded-full w-fit mt-[3vh]"

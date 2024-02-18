@@ -1,6 +1,6 @@
-import React from "react";
+import React, {lazy} from "react";
 
-import ViewService from "../components/Service/ViewService";
+const ViewService = lazy( () => import("../components/Service/ViewService"));
 
 function Viewservice() {
     return (

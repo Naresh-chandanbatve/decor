@@ -1,5 +1,5 @@
-import React from "react";
-import MyCart from "../components/MyCart";
+import React , {lazy}from "react";
+const MyCart  = lazy( () => import("../components/MyCart"));
 
 
 function Mycart() {
