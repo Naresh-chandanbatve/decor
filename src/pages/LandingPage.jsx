@@ -48,7 +48,7 @@ function LandingPage() {
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
           <div className="w-fit align-self-top mx-2 pb-2">₹ {data.price}</div>
-          <div className="text-xs w-fit mx-2 text-left">₹ {data.title}</div>
+          <div className="text-xs w-fit mx-2 text-left"> {data.title}</div>
         </div>
       </div>
     );
@@ -181,7 +181,7 @@ function LandingPage() {
               View All
             </Link>
           </div>
-          <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-screen">
+          <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-[95vw] m-auto">
             {jsonData.map((item) => (
               <Link
                 to={`/view?id=${item.id}`}
@@ -195,7 +195,7 @@ function LandingPage() {
 
         <div className="my-[8vh]">
           <div className="text-2xl text-left ml-[3vh] basis-3/4">Gallery</div>
-          <div className="flex flex-row overflow-x-scroll mt-[2vh] w-screen">
+          <div className="flex flex-row overflow-x-scroll mt-[2vh] w-[95vw] m-auto">
             {jsonData.map((item) => (
               <MyComponent2 key={item.id} data={item} />
             ))}

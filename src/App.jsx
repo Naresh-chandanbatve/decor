@@ -19,7 +19,7 @@ const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
 
 const AuthContext = createContext(null);
 function App() {
-  const [loginType, setLoginType] = useState(null);
+  const [loginType, setLoginType] = useState('t');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
