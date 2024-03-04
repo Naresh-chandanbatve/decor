@@ -44,6 +44,7 @@ export const  authenticated = (req, res)=>{
       isAdmin: req.user.isAdmin,
       token: token
   }
+  console.log(FRONT_URL)
     res.redirect(`${FRONT_URL}/?userData=${encodeURIComponent(JSON.stringify(userData))}`);
 
     // res.status(200).json({
