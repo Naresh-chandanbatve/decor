@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, lazy, useRef } from "react";
 import { Button } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
-import * as CryptoJS from "crypto-js";
 import axios from "axios";
 
 const Navbar = lazy(() => import("../components/LandingPage/NavBar"));

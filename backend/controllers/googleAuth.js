@@ -1,8 +1,6 @@
 import '../middlewares/passportConfig.js'
 import  passport  from 'passport'
 import generateToken from "../middlewares/generateToken.js";
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 const FRONT_URL = process.env.FRONT_URL || 'http://localhost:5173'
 
@@ -46,8 +44,6 @@ export const  authenticated = (req, res)=>{
       isAdmin: req.user.isAdmin,
       token: token
   }
-  console.log(process.env.FRONT_URL)
-  console.log(FRONT_URL)
     res.redirect(`${FRONT_URL}/?userData=${encodeURIComponent(JSON.stringify(userData))}`);
 
     // res.status(200).json({
