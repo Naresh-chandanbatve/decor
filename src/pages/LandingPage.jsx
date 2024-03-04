@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, lazy, useRef } from "react";
 import { Button } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
+import CryptoJS from "crypto-js";
 import axios from "axios";
 
 const Navbar = lazy(() => import("../components/LandingPage/NavBar"));
@@ -42,8 +43,7 @@ function LandingPage() {
 
   const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
-  const {  setLoginType, isLoggedIn, setIsLoggedIn } =
-    useContext(AuthContext);
+  const { setLoginType, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
   const userData = JSON.parse(decodeURIComponent(searchParams.get("userData")));
   if (userData) {
