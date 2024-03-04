@@ -1,11 +1,15 @@
-import React,{ useState,lazy, useRef} from "react";
+import React, { useState, useEffect, useContext, lazy, useRef } from "react";
 import { Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
+import * as CryptoJS from "crypto-js";
+import axios from "axios";
 
-const Navbar  = lazy( () => import("../components/LandingPage/NavBar"));
-const  Sidebar = lazy( () => import("../components/LandingPage/SideBar"));
-const Footer = lazy( () => import("../components/LandingPage/Footer"));
+const Navbar = lazy(() => import("../components/LandingPage/NavBar"));
+const Sidebar = lazy(() => import("../components/LandingPage/SideBar"));
+const Footer = lazy(() => import("../components/LandingPage/Footer"));
+
+import { AuthContext } from "../App";
 
 const swiper = new Swiper(".your-carousel-container", {
   // Your Swiper options here
@@ -37,13 +41,30 @@ function LandingPage() {
     setIsNav(!isNav);
   };
 
+  const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
+  const PORT = import.meta.env.VITE_PORT || 5000;
+
+  const {  setLoginType, isLoggedIn, setIsLoggedIn } =
+    useContext(AuthContext);
+  const [searchParams] = useSearchParams();
+  const userData = JSON.parse(decodeURIComponent(searchParams.get("userData")));
+  if (userData) {
+    localStorage.setItem("jwtToken", userData.token);
+    setIsLoggedIn(true);
+    if (userData.isAdmin) {
+      setLoginType("admin");
+    } else {
+      setLoginType("user");
+    }
+  }
+
   // component
   const MyComponent = ({ data }) => {
     // Use data.property1, data.property2, etc. to render content
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2">
         <img
-          src={data.imagePath}
+          src={data.img_url}
           className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
@@ -72,8 +93,10 @@ function LandingPage() {
       id: 1,
       title: "Small Birthday Decoration",
       price: "3000",
-      imagePath: "/assets/23-CYX5G_Ke.png",
-      description: "thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description ",
+      imagePath:
+        "http://localhost:5000/service/getImage/01adbcbabde7fd06e14c2ae0a57cbb1e.png",
+      description:
+        "thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description ",
     },
     {
       id: 2,
@@ -105,10 +128,23 @@ function LandingPage() {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${BACK_URL}:${PORT}/service/all`);
+        setServices(response.data.result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    
     <>
       <div
         onClick={handleWhatsapp}
@@ -182,12 +218,9 @@ function LandingPage() {
             </Link>
           </div>
           <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-[95vw] m-auto">
-            {jsonData.map((item) => (
-              <Link
-                to={`/view?id=${item.id}`}
-                style={{ color: "white" }}
-              >
-                <MyComponent key={item.id} data={item} />
+            {services.map((item) => (
+              <Link to={`/view?id=${item._id}`} style={{ color: "white" }}>
+                <MyComponent key={item._id} data={item} />
               </Link>
             ))}
           </div>

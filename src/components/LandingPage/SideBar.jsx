@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { CloseIcon, Icon } from "@chakra-ui/icons";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
@@ -9,9 +9,52 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../App";
 import { AiFillFileAdd } from "react-icons/ai";
+import axios from "axios";
+
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
+const PORT = import.meta.env.VITE_PORT || 5000;
 
 function Sidebar({ toggleNav }) {
-  const { loginType, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { loginType, setLoginType,  isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  const token = localStorage.getItem("jwtToken");
+
+  if(token){
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${BACK_URL}:${PORT}/user/getUser`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if(response.data){
+            setIsLoggedIn(true);
+            if(response.data.isAdmin) {
+              setLoginType('admin')
+            }
+            else {
+              setLoginType('user')
+            }
+          }
+          else{
+            setIsLoggedIn(false);
+            setLoginType('guest')
+            localStorage.removeItem('jwtToken')
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  }
+  else{
+     setIsLoggedIn(false); //
+     setLoginType('guest')
+  }
+
   return (
     <div className="fixed flex flex-col z-50 bg-[#111C18] bg-opacity-[93%] bckdrop-blur-md right-0 top-0 w-[74.66vw] h-screen">
       <CloseIcon onClick={toggleNav} boxSize={22} className="self-end m-5" />
@@ -56,7 +99,10 @@ function Sidebar({ toggleNav }) {
                 <div className="text-lg mx-[4vw]">My Orders</div>
               </Link>
               <Link
-                onClick={() => setIsLoggedIn(false)}
+                onClick={() => {
+                  localStorage.removeItem("jwtToken");
+                  setIsLoggedIn(false);
+                }}
                 style={{ color: "white" }}
                 className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]"
               >

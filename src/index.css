@@ -18,7 +18,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@import "~swiper/swiper-bundle.min.css";
 
 a {
   font-weight: 500;

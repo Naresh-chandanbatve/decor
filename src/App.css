@@ -6,18 +6,6 @@
   text-align: center;
 }
 
-.swiper-slide-active div{
-  /* filter: blur(30); */
-  opacity: 2; /* Adjust "x" for desired blur level */
-  transform:scale(1.1);
-}
-
-.swiper-slide .swiper-slide-active {
-  transform:scale(2.1);
-  transition:-webkit-filter 400ms linear;
-  transition-delay:2s;
-}
-
 .nav-link {
   text-decoration: none;
   font-weight: bold;
