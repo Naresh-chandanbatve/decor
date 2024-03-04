@@ -6,8 +6,7 @@ import userModel from '../models/user.js';
 import session from 'express-session';
 
 
-const PORT = process.env.PORT || 5000
-const BASE_URL = process.env.BASE_URL || 'http://localhost';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
 
 
 const initializePassport = (app) => {
@@ -27,7 +26,7 @@ const initializePassport = (app) => {
   passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: `${BASE_URL}:${PORT}/googleAuth/google/callback`
+    callbackURL: `${BASE_URL}/googleAuth/google/callback`
   },
   async (accessToken, refreshToken, profile, done) => {
     // Handle user data and pass it to the 'done' callback

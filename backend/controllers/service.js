@@ -1,8 +1,7 @@
 import serviceModel from '../models/service.js'
 
 
-const PORT = process.env.PORT || 5000
-const BASE_URL = process.env.BASE_URL || 'http://localhost';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
 
 
 /**
@@ -15,7 +14,7 @@ export const addService = async (req, res) => {
         
         console.log(req.file)
         const { title, catagory, price, description } = req.body;
-        const img_url = `${BASE_URL}:${PORT}/service/getImage/`+req.file.filename
+        const img_url = `${BASE_URL}/service/getImage/`+req.file.filename
 
         const result = await serviceModel.create({
             img_url,

@@ -6,8 +6,7 @@ import sendEmail from "../middlewares/sendEmail.js";
 import generateToken from "../middlewares/generateToken.js";
 
 const USER_SECRET = process.env.USER_SECRET;
-const PORT = process.env.PORT || 5000
-const BASE_URL = process.env.BASE_URL || 'http://localhost';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
 
 /**
  * route: /auth/signup
@@ -80,7 +79,7 @@ export const signup = async (req, res)=>{
 
           if(result){
             const token = generateToken(result, USER_SECRET, "300s");
-            const url = `${BASE_URL}:${PORT}/auth/verify?token=${token}`;
+            const url = `${BASE_URL}/auth/verify?token=${token}`;
       
             const options = {
               name: result.name,
