@@ -9,8 +9,7 @@ import { AuthContext } from "../../App";
 import axios from "axios";
 import * as CryptoJS from "crypto-js";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function SignInPage({ toggleForm }) {
   const nav = useNavigate();
@@ -38,7 +37,7 @@ function SignInPage({ toggleForm }) {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`${BACK_URL}:${PORT}/auth/signin`, {
+      const response = await axios.post(`${BACK_URL}/auth/signin`, {
         email: formData.email,
         password: formData.password,
       });
@@ -149,7 +148,7 @@ function SignInPage({ toggleForm }) {
       <Button
         onClick={async () => {
 
-          window.location.href = `${BACK_URL}:${PORT}/googleAuth/google`;
+          window.location.href = `${BACK_URL}/googleAuth/google`;
 
         }}
         padding={0}

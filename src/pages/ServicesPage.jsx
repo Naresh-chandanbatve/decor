@@ -70,7 +70,7 @@ function ServicesPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BACK_URL}:${PORT}/service/all`);
+        const response = await axios.get(`${BACK_URL}/service/all`);
         setServices(response.data.result);
       } catch (error) {
         console.error(error);

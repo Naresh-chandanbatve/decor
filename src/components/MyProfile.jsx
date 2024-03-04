@@ -4,8 +4,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { MdEdit } from "react-icons/md";
 import { Input, Textarea, Button } from "@chakra-ui/react";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function MyProfile() {
   const [isEditEnabled, setIsEditEnabled] = useState(true);
@@ -18,7 +17,7 @@ function MyProfile() {
   async function handleSubmit(event) {
     event.preventDefault();
     const response = await axios.post(
-      `${BACK_URL}:${PORT}/user/add`,
+      `${BACK_URL}/user/add`,
       formData,
       {
         headers: {

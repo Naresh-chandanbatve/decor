@@ -11,8 +11,7 @@ import { AuthContext } from "../../App";
 import { AiFillFileAdd } from "react-icons/ai";
 import axios from "axios";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost5000";
 
 function Sidebar({ toggleNav }) {
   const { loginType, setLoginType,  isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -23,7 +22,7 @@ function Sidebar({ toggleNav }) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`${BACK_URL}:${PORT}/user/getUser`, {
+          const response = await axios.get(`${BACK_URL}/user/getUser`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

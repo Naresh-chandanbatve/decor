@@ -41,8 +41,7 @@ function LandingPage() {
     setIsNav(!isNav);
   };
 
-  const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-  const PORT = import.meta.env.VITE_PORT || 5000;
+  const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
   const {  setLoginType, isLoggedIn, setIsLoggedIn } =
     useContext(AuthContext);
@@ -134,7 +133,7 @@ function LandingPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BACK_URL}:${PORT}/service/all`);
+        const response = await axios.get(`${BACK_URL}/service/all`);
         setServices(response.data.result);
       } catch (error) {
         console.error(error);

@@ -10,8 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 import axios from "axios";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function AddService() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -54,7 +53,7 @@ function AddService() {
     formdata.append("catagory", formData.catagory);
     try {
       const response = await axios.post(
-        `${BACK_URL}:${PORT}/service/add`,
+        `${BACK_URL}/service/add`,
         formData,
         {
           headers: {

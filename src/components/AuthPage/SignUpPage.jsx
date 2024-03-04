@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../App";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function SignUpPage({ toggleForm }) {
   const nav = useNavigate();
@@ -31,7 +30,7 @@ function SignUpPage({ toggleForm }) {
 
     try {
       const response = await axios.post(
-        `${BACK_URL}:${PORT}/auth/signup`,
+        `${BACK_URL}/auth/signup`,
         formData
       );
 
@@ -164,7 +163,7 @@ function SignUpPage({ toggleForm }) {
       </div>
       <Button
         onClick={() => {
-          window.location.href = `${BACK_URL}:${PORT}/googleAuth/google`;
+          window.location.href = `${BACK_URL}/googleAuth/google`;
         }}
         padding={0}
         background="#6CA18F"

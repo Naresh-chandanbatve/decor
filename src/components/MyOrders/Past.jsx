@@ -18,8 +18,7 @@ import {
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function Past() {
   const [orders, setOrders] = useState([]);
@@ -27,7 +26,7 @@ function Past() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BACK_URL}:${PORT}/order/all`);
+        const response = await axios.get(`${BACK_URL}/order/all`);
         setOrders(response.data.result);
       } catch (error) {
         console.error(error);
@@ -80,7 +79,7 @@ function Past() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `${BACK_URL}:${PORT}/service/get/${data.serviceID}`
+            `${BACK_URL}/service/get/${data.serviceID}`
           );
           setFetchedData(response.data);
         } catch (error) {

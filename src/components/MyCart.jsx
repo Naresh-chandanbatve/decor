@@ -19,8 +19,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function MyCart() {
   const [carts, setCart] = useState([]);
@@ -29,7 +28,7 @@ function MyCart() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("jwtToken");
-        const response = await axios.get(`${BACK_URL}:${PORT}/cart/get`, {
+        const response = await axios.get(`${BACK_URL}/cart/get`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,7 +49,7 @@ function MyCart() {
       const itemPrices = await Promise.all(
         carts.map(async (cartItem) => {
           const response = await axios.get(
-            `${BACK_URL}:${PORT}/service/get/${cartItem.serviceID}`
+            `${BACK_URL}/service/get/${cartItem.serviceID}`
           );
           return parseFloat(response.data.result.price);
         })
@@ -68,7 +67,7 @@ function MyCart() {
 
     const token = localStorage.getItem("jwtToken");
     const response = await axios.get(
-      `${BACK_URL}:${PORT}/cashfree/create/${totalPrice}`,
+      `${BACK_URL}/cashfree/create/${totalPrice}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -127,7 +126,7 @@ function MyCart() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `${BACK_URL}:${PORT}/service/get/${data.serviceID}`
+            `${BACK_URL}/service/get/${data.serviceID}`
           );
           setFetchedData(response.data);
         } catch (error) {
@@ -146,7 +145,7 @@ function MyCart() {
       try {
         onClose;
         const response = await axios.delete(
-          `${BACK_URL}:${PORT}/cart/delete/${cartID}`
+          `${BACK_URL}/cart/delete/${cartID}`
         );
         if (response) {
           console.log("cart deleted successfully");

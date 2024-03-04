@@ -15,8 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function Active() {
 
@@ -25,7 +24,7 @@ function Active() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BACK_URL}:${PORT}/order/all`);
+        const response = await axios.get(`${BACK_URL}/order/all`);
 
         setOrders(response.data.result);
       } catch (error) {
@@ -79,7 +78,7 @@ function Active() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `${BACK_URL}:${PORT}/service/get/${data.serviceID}`
+            `${BACK_URL}/service/get/${data.serviceID}`
           );
           setFetchedData(response.data);
         } catch (error) {
@@ -97,7 +96,7 @@ function Active() {
     async function deleteOrder(orderID) {
       try {
         const response = await axios.delete(
-          `${BACK_URL}:${PORT}/order/delete/${orderID}`
+          `${BACK_URL}/order/delete/${orderID}`
         );
         if (response){
           console.log("order deleted successfully");

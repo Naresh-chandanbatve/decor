@@ -20,8 +20,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
-const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
-const PORT = import.meta.env.VITE_PORT || 5000;
+const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ViewService() {
   const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
@@ -48,7 +47,7 @@ function ViewService() {
     const fetchService = async () => {
       try {
         const response = await axios.get(
-          `${BACK_URL}:${PORT}/service/get/` + id
+          `${BACK_URL}/service/get/` + id
         );
         setData(response.data.result);
       } catch (error) {
@@ -105,7 +104,7 @@ function ViewService() {
           // Handle form 1 submission (store data)
           try {
             const token = localStorage.getItem("jwtToken");
-            const user = await axios.get(`${BACK_URL}:${PORT}/user/getUser`, {
+            const user = await axios.get(`${BACK_URL}/user/getUser`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -189,7 +188,7 @@ function ViewService() {
                   try {
                     if (formData2.isPayAfter) {
                       const response = await axios.post(
-                        `${BACK_URL}:${PORT}/order/add`,
+                        `${BACK_URL}/order/add`,
                         combinedFormData,
                         {
                           headers: {
@@ -203,7 +202,7 @@ function ViewService() {
                       );
                     } else {
                       const response = await axios.post(
-                        `${BACK_URL}:${PORT}/cart/add`,
+                        `${BACK_URL}/cart/add`,
                         combinedFormData,
                         {
                           headers: {
