@@ -43,7 +43,7 @@ export const addService = async (req, res) => {
 
 export const getImageByName = async (req, res) => {
     console.log("reched")
-    const imageName = req.params.filename
+    const imageName = req.params.filename+'.jpg'
     const gfs = req.app.get('gfs');
     const gridfsBucket = req.app.get('gridfsBucket');
     res.setHeader('Access-Control-Allow-Origin', '*')
