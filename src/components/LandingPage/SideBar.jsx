@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { CloseIcon, Icon } from "@chakra-ui/icons";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
@@ -14,11 +14,12 @@ import axios from "axios";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost5000";
 
 function Sidebar({ toggleNav }) {
-  const { loginType, setLoginType,  isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
+    useContext(AuthContext);
 
   const token = localStorage.getItem("jwtToken");
 
-  if(token){
+  if (token) {
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -27,31 +28,28 @@ function Sidebar({ toggleNav }) {
               Authorization: `Bearer ${token}`,
             },
           });
-          if(response.data){
+          if (response.data) {
             setIsLoggedIn(true);
-            if(response.data.isAdmin) {
-              setLoginType('admin')
+            if (response.data.isAdmin) {
+              setLoginType("admin");
+            } else {
+              setLoginType("user");
             }
-            else {
-              setLoginType('user')
-            }
-          }
-          else{
+          } else {
             setIsLoggedIn(false);
-            setLoginType('guest')
-            localStorage.removeItem('jwtToken')
+            setLoginType("guest");
+            localStorage.removeItem("jwtToken");
           }
         } catch (error) {
           console.error(error);
         }
       };
-  
+
       fetchData();
     }, []);
-  }
-  else{
-     setIsLoggedIn(false); //
-     setLoginType('guest')
+  } else {
+    setIsLoggedIn(false); //
+    setLoginType("guest");
   }
 
   return (

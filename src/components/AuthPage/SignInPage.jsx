@@ -47,7 +47,6 @@ function SignInPage({ toggleForm }) {
         console.log("Sign-in successful!");
         const token = response.data.token;
 
-        const encryptedToken = encrypt(token, "your_secure_key");
         localStorage.setItem("jwtToken", encryptedToken);
         // ... navigate to protected home page
         if (response.data.isAdmin) {

@@ -38,12 +38,19 @@ const initializePassport = (app) => {
       if (User) {
         return done(null, User);
       }
+
+      const isAdmin = false
+
+      if(email == 'pacharerakesh09@gmail.com'){
+        isAdmin = true;
+      }
   
       // If user does not exist, create a new user record
       const result = await userModel.create({
         googleID: profile.id,
         name: profile.displayName,
         email: profile.emails[0].value,
+        isAdmin
      });
      if(result){
       console.log("user created"+ result)

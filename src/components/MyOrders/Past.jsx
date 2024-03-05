@@ -3,6 +3,7 @@ import { CiMenuKebab } from "react-icons/ci";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { Divider } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogBody,
@@ -177,9 +178,9 @@ function Past() {
 
   return (
     <div className="grid content-start overflow-y-scroll h-[80vh] mt-5">
-      {orders.map((item) => (
+      <Link to={`/vieworder?id=${item._id}`} style={{ color: "white" }}>
         <MyComponent key={item._id} data={item} />
-      ))}
+      </Link>
     </div>
   );
 }

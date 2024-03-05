@@ -71,15 +71,15 @@ export const deleteOrder = async (req, res) => {
 
 
 /**
- * Route: /order/get
+ * Route: /order/get/:id
  * Descr: view order
  */
 export const getOrder = async (req, res) => {
     
     try {
-        const { id } = req.body;
+        
 
-        const result = await orderModel.findById(id);
+        const result = await orderModel.findById(req.params.id);
         
             if(result){
                 return res.status(200).json({

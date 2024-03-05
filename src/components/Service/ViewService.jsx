@@ -40,15 +40,12 @@ function ViewService() {
 
   const handleChange1 = (event) => {
     setFormData2({ ...formData2, [event.target.name]: event.target.checked });
-    console.log(formData2);
   };
 
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const response = await axios.get(
-          `${BACK_URL}/service/get/` + id
-        );
+        const response = await axios.get(`${BACK_URL}/service/get/` + id);
         setData(response.data.result);
       } catch (error) {
         console.error(error);

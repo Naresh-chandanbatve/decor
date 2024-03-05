@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { Divider, useDisclosure } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   AlertDialog,
@@ -18,7 +19,6 @@ import { MdDelete } from "react-icons/md";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function Active() {
-
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function Active() {
         const response = await axios.delete(
           `${BACK_URL}/order/delete/${orderID}`
         );
-        if (response){
+        if (response) {
           console.log("order deleted successfully");
         }
       } catch (error) {
@@ -163,26 +163,31 @@ function Active() {
         >
           <AlertDialogOverlay className="bg-black/60">
             <AlertDialogContent className="grid  place-content-center h-screen ">
-              <div className="bg-black p-3"><AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Customer
-              </AlertDialogHeader>
+              <div className="bg-black p-3">
+                <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                  Delete Customer
+                </AlertDialogHeader>
 
-              <AlertDialogBody>
-                Are you sure? Do You really want to delete this Order?
-              </AlertDialogBody>
+                <AlertDialogBody>
+                  Are you sure? Do You really want to delete this Order?
+                </AlertDialogBody>
 
-              <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme="red" onClick={() =>{
-                   deleteOrder(data._id)
-                   onClose();
-                   }} ml={3}>
-                  Delete
-                </Button>
-              </AlertDialogFooter></div>
-              
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => {
+                      deleteOrder(data._id);
+                      onClose();
+                    }}
+                    ml={3}
+                  >
+                    Delete
+                  </Button>
+                </AlertDialogFooter>
+              </div>
             </AlertDialogContent>
           </AlertDialogOverlay>
         </AlertDialog>
@@ -193,7 +198,9 @@ function Active() {
   return (
     <div className="grid content-start overflow-y-scroll h-[80vh] mt-5">
       {orders.map((item) => (
-        <MyComponent key={item._id} data={item} />
+        <Link to={`/vieworder?id=${item._id}`} style={{ color: "white" }}>
+          <MyComponent key={item._id} data={item} />
+        </Link>
       ))}
     </div>
   );

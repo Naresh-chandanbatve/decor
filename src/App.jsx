@@ -21,6 +21,7 @@ const ResetPassword = lazy(() => import("./pages/authPages/ResetPassword.jsx"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage.jsx"));
 const AddService = lazy(() => import("./pages/AddService.jsx"));
 const ViewService = lazy(() => import("./pages/ViewService.jsx"));
+const ViewOrder = lazy(() => import("./pages/viewOrder.jsx"));
 const MyOrders = lazy(() => import("./pages/MyOrders.jsx"));
 const MyProfile = lazy(() => import("./pages/MyProfile.jsx"));
 const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
@@ -51,6 +52,7 @@ function App() {
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/add" element={<AddService />} />
               <Route path="/view" element={<ViewService />} />
+              <Route path="/vieworder" element={<ViewOrder />} />
               <Route path="/myorders" element={<MyOrders />} />
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/mycart" element={<MyCart />} />

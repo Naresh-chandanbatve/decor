@@ -64,6 +64,12 @@ export const signup = async (req, res)=>{
         message: "Password doesn't Match",
       });
 
+      const isAdmin = false
+
+      if(email == 'pacharerakesh09@gmail.com'){
+        isAdmin = true;
+      }
+
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -73,6 +79,7 @@ export const signup = async (req, res)=>{
             username,
             email,
             phone,
+            isAdmin,
             address,
             img_url,
           });

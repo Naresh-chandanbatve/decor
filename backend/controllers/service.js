@@ -55,6 +55,7 @@ export const getImageByName = async (req, res) => {
         }
         if(files.contentType=="image/png" || files.contentType=="image/jpg" || files.contentType=="image/jpeg" || files.contentType=="image/webp"){
             const readstream = gridfsBucket.openDownloadStream(files._id);
+            res.setHeader('Access-Control-Allow-Origin', '*')
             readstream.pipe(res)
         }
         else{
@@ -118,7 +119,7 @@ export const getService = async (req, res) => {
         const id = req.params.id
        
 
-        const result = await serviceModel.findById(id);
+        const result = await serviceModel.findById({_id: id});
         console.log(result)
             if(result){
                 return res.status(200).json({
