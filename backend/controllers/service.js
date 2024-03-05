@@ -12,7 +12,6 @@ export const addService = async (req, res) => {
     
     try {
         
-        console.log(req.file)
         const { title, catagory, price, description } = req.body;
         const img_url = `${BASE_URL}/service/getImage/`+req.file.filename
 
@@ -46,16 +45,19 @@ export const getImageByName = async (req, res) => {
     const imageName = req.params.filename
     const gfs = req.app.get('gfs');
     const gridfsBucket = req.app.get('gridfsBucket');
-
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    console.log(imageName)
     gfs.files.findOne({filename:imageName}).then((files) =>{
         if(!files || !files.length){
           return res.status(404).json({
             message: "Image not found"
           })
         }
+        
         if(files.contentType=="image/png" || files.contentType=="image/jpg" || files.contentType=="image/jpeg" || files.contentType=="image/webp"){
             const readstream = gridfsBucket.openDownloadStream(files._id);
-            res.setHeader('Access-Control-Allow-Origin', '*')
+            console.log(files)
+            res.setHeader('Content-Type', files.contentType);
             readstream.pipe(res)
         }
         else{
