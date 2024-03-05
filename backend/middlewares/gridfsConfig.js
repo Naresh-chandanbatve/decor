@@ -13,7 +13,7 @@ dotenv.config();
             return reject(err);
           }
           else{
-            const filename = buf.toString('hex') + 'jpg';
+            const filename = buf.toString('hex') + '.jpg';
             const fileInfo = {
               filename: filename,
               bucketName: 'uploads'
