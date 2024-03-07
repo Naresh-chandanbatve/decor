@@ -8,7 +8,7 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       external: [
-        "/backend/*"
+        'backend/'
       ],
     },
   },
