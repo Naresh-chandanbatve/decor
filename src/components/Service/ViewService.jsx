@@ -31,7 +31,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { MdDelete } from "react-icons/md";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../App";
 

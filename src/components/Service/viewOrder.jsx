@@ -70,13 +70,11 @@ function ViewOrder() {
     const fetchService = async () => {
       try {
         if (orderData.serviceID) {
-          console.log(orderData.serviceID);
           const response = await axios.get(
             `${BACK_URL}/service/get/` + orderData.serviceID
           );
           setServiceData(response.data.result);
         } else {
-          console.log("undefined orderdata");
           toast("Something went Wrong!", {
             position: "top-center",
             autoClose: 3000,
@@ -90,16 +88,6 @@ function ViewOrder() {
         }
       } catch (error) {
         console.error(error);
-        toast(error.response.message, {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark"
-          });
       }
     };
     fetchService();
