@@ -10,6 +10,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as dotenv from "dotenv";
 
 import load from "../src/assets/tube-spinner.svg";
+import { ChakraProvider } from "@chakra-ui/react";
+import Terms from "./components/TermsCondition.jsx";
+import Privacy from "./components/Privacy.jsx";
 
 const LandingPage = lazy(() => import("./pages/LandingPage.jsx"));
 const MyCart = lazy(() => import("./pages/MyCart.jsx"));
@@ -45,7 +48,7 @@ function App() {
             }
           >
             <Routes>
-              <Route path="/" element={loginType && <LandingPage />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/forgot" element={<ForgotPassword />} />
               <Route path="/reset" element={<ResetPassword />} />
@@ -57,6 +60,8 @@ function App() {
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/mycart" element={<MyCart />} />
               <Route path="/aboutus" element={<AboutUs />} />
+              <Route path="/terms" element={<Terms/>} />
+              <Route path="/privacy" element={<Privacy />} />
               <Route path="*" element={<div>404</div>} />
               <Route path="/successpayment" element={<PaymentSucess/>}/>
             </Routes>

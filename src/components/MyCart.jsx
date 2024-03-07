@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { CiMenuKebab } from "react-icons/ci";
 import { IoLocationSharp } from "react-icons/io5";
@@ -18,12 +18,17 @@ import {
   Button,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { AuthContext } from "../App";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function MyCart() {
   const [carts, setCart] = useState([]);
-
+  const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
+  useContext(AuthContext);
+  const nav = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,6 +41,20 @@ function MyCart() {
         setCart(response.data.result);
       } catch (error) {
         console.error(error);
+        if (error.response.status === 403) {
+          localStorage.removeItem("jwtToken");
+          setIsLoggedIn(false);
+          toast("Not Authorized! Please Login Again!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark"
+            });
+        }
       }
     };
 
@@ -74,6 +93,22 @@ function MyCart() {
         },
       }
     );
+    if(response.statusCode === 403){
+      localStorage.removeItem('jwtToken')
+      setIsLoggedIn(false)
+      toast("Not Authorized! Please Login Again!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
+      nav('/')
+    } 
+
     let checkoutOptions = {
       paymentSessionId: response.data.payment_session_id,
       redirectTarget: "_blank",
@@ -152,6 +187,16 @@ function MyCart() {
         }
       } catch (error) {
         console.error(error);
+        toast.error(error.response.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       }
     }
 
@@ -183,7 +228,7 @@ function MyCart() {
               {fetchedData.result.title}
             </div>
             <div className="flex flex-row h-fit">
-              <IoLocationSharp />
+              <IoLocationSharp size={12} fill="#CAC4C4"/>
               <div className="text-[10px] text-left text-[#CAC4C4]">
                 {data.address}
               </div>
@@ -214,19 +259,19 @@ function MyCart() {
             <AlertDialogContent className="grid  place-content-center h-screen ">
               <div className="bg-black p-3">
                 <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                  Delete Customer
+                  Delete Cart Item
                 </AlertDialogHeader>
 
                 <AlertDialogBody>
-                  Are you sure? Do You really want to delete this Order?
+                  Are you sure? Do You really want to delete this Item?
                 </AlertDialogBody>
 
                 <AlertDialogFooter>
-                  <Button ref={cancelRef} onClick={onClose}>
+                  <Button ref={cancelRef} onClick={onClose} className="mx-1">
                     Cancel
                   </Button>
                   <Button
-                    colorScheme="red"
+                    className="bg-[#ff0000] border-3 border-red"
                     onClick={() => {
                       deleteCart(data._id);
                     }}
@@ -259,13 +304,13 @@ function MyCart() {
         <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
           My Cart
         </div>
-        <Link
+        {/* <Link
           to="/"
           style={{ color: "white" }}
           className="flex justify-center items-center mx-[2vh]"
         >
           <CiMenuKebab color="white" fill="white" size={30} className=" " />
-        </Link>
+        </Link> */}
       </div>
       <div className="grid content-start overflow-y-scroll w-screen h-[80vh] mt-20 pb-[25.43vh]">
         {carts.map((item) => (
@@ -299,6 +344,19 @@ function MyCart() {
           <p className="mx-4">Checkout</p>
         </Button>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 }

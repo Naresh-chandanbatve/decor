@@ -3,8 +3,10 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 
 function Navbar({ toggleNav }) {
   return (
-    <div className="fixed top-0 z-50 backdrop-blur-md grid grid-flow-col w-screen h-[7.38vh] bg-[rgb(102,102,102)] bg-opacity-[14%] items-center">
-      <p className="justify-self-start m-4">Raku Sounds and decor</p>
+    <div className="fixed top-0 z-50 backdrop-blur-mdl grid grid-flow-col w-screen h-[7.38vh] bg-[rgb(19,19,19)] bg-opacity-[74%] items-center">
+      <div className="flex flex-row items-center h-fit">
+        <img src="../../src/assets/logo2.png" className="h-[7vw] w-[35vw] m-4"></img>
+      </div>
 
       <HamburgerIcon
         onClick={toggleNav}

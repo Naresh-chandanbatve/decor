@@ -22,8 +22,6 @@ export const createOrder = (req, res) => {
 
     const orderId = crypto.randomBytes(10).toString('hex');
 
-    console.log(req.params.total_amount)
-
     var request = {
         "order_amount": req.params.total_amount,
         "order_currency": "INR",
@@ -57,7 +55,7 @@ export const order = async (req, res) => {
     const newOrderItems = cart.map(async (cartItem) => {
         try {
           const itemData = {
-            status: "DONE",
+            status: "PAID",
             orderID: cartItem._id,
             userID: cartItem.userID,
             serviceID: cartItem.serviceID,

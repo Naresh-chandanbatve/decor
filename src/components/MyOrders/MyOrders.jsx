@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
@@ -12,9 +12,12 @@ import {
 import Active from "./Active";
 import Past from "./Past";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { AuthContext } from "../../App";
 function MyOrders() {
   const [activeState, setActiveState] = useState(true); // Initially set the active link
-
+  const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
+  useContext(AuthContext);
+  
   const handleStateClick = () => {
     setActiveState(!activeState);
   };

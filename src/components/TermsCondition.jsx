@@ -30,7 +30,7 @@ const swiper = new Swiper(".your-carousel-container", {
   speed: 1500,
 });
 
-function AboutUs() {
+function Terms() {
   const [isNav, setIsNav] = useState(false);
   const toggleNav = () => {
     setIsNav(!isNav);
@@ -98,36 +98,45 @@ function AboutUs() {
       <div className="w-screen">
         <Navbar toggleNav={toggleNav} />
         {isNav ? <Sidebar toggleNav={toggleNav} /> : <></>}
-        <div className="mt-[10.75vh] text-left m-auto w-fit text-lg">About Us </div>
-        <div className="text-justify mt-[2vh] mx-5">
-          More than decorators and sound engineers, we are experience
-          architects. We meticulously blend sight and sound to transform your
-          aspirations into unforgettable realities. From intimate gatherings to
-          grand celebrations, we elevate your events with meticulous
-          craftsmanship, innovative solutions, and unwavering dedication.
+        <div className="mt-[10.75vh] text-left m-auto w-fit text-lg">
+          Terms And Condition
         </div>
-        <div className="text-left mt-[5vh] mx-5">What Sets Us Apart</div>
+        <div className="text-justify mt-[2vh] mx-5">
+          Welcome to DJ Sound Service! These Terms and Conditions ("Terms")
+          govern your use of our website and the services we offer. By accessing
+          or using our website, you agree to be bound by these Terms.
+        </div>
+        <div className="text-left mt-[5vh] mx-5">Services</div>
+        <p className="mx-5 text-left mt-[2vh]">
+          DJ Sound Service provides DJ services for events such as weddings,
+          parties, and corporate functions. We offer a variety of music genres
+          and packages to meet your needs.
+        </p>
         <div className="text-justify mb-[5vh] mt-[2vh] mx-5">
           <ul>
-            <li>
-              Passionate and Talented Team: Our team consists of experienced
-              decorators and sound technicians who are dedicated to their craft.
-              We are creative thinkers, problem solvers, and meticulous in our
-              execution.
+            <div className="text-left mt-[5vh]">Use of Website</div>
+
+            <li className="mt-[2vh]">
+              This website is for your personal, non-commercial use. You may not
+              modify, copy, distribute, transmit, display, perform, reproduce,
+              publish, license, create derivative works from, transfer, or sell
+              any information or content found on this website.
             </li>
             <br />
-            <li>
-              Unmatched Service: We go the extra mile to understand your unique
-              needs and preferences. We offer personalized consultations,
-              seamless planning, and reliable execution, ensuring your event
-              runs smoothly and stress-free.
+            <div className="text-left mt-[5vh] ">Content</div>
+            <li className="mt-[2vh]">
+              The content on this website, including text, graphics, logos,
+              images, and software, is the property of DJ Sound Service or its
+              licensors and is protected by copyright and other intellectual
+              property laws.
             </li>
             <br />
-            <li>
-              Extensive Inventory: We boast a diverse collection of high-quality
-              décor and sound equipment. From elegant drapes and lighting to
-              crystal-clear sound systems and special effects, we have
-              everything you need to create the perfect ambiance.
+            <div className="text-left mt-[5vh]">Booking and Payment</div>
+            <li className="mt-[2vh]">
+              To book our services, you will need to fill out a booking form and
+              provide a deposit. The full payment will be due before the event.
+              We accept various payment methods, which will be outlined during
+              the booking process.
             </li>
           </ul>
         </div>
@@ -138,4 +147,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default Terms;

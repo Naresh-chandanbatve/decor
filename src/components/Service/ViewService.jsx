@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Input,
   Box,
@@ -8,7 +8,17 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
   Button,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
   Modal,
   ModalOverlay,
   ModalContent,
@@ -16,18 +26,28 @@ import {
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { MdDelete } from "react-icons/md";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../App";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ViewService() {
+  const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
+    useContext(AuthContext);
+  const nav = useNavigate();
   const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
   const [data, setData] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,11 +69,40 @@ function ViewService() {
         setData(response.data.result);
       } catch (error) {
         console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       }
     };
 
     fetchService();
   }, []);
+
+  async function handleDelete(id) {
+    try {
+      const response = await axios.delete(`${BACK_URL}/service/delete/` + id);
+      console.log(response.data.message);
+    } catch (error) {
+      console.error(error);
+      toast(error.response.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
+    }
+  }
 
   function combineFormData(formData1, formData2) {
     const combinedFormData = new FormData();
@@ -85,16 +134,23 @@ function ViewService() {
 
   return (
     <div className=" h-screen bg-gradient-to-tl from-[#1A1F1D] from-20% via-[#0A0E0D]/88 via-60% to-[#0A0E0D]/81">
-      <Link to="/" style={{ color: "white" }}>
-        <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
+      <div className="flex flex-row w-screen justify-between bg-[#17201E] bg-opacity-[72%]">
+        <Link to="/" style={{ color: "white" }}>
           <ChevronLeftIcon
             viewBox="8 -4 30 30"
             boxSize={60}
             float={"left"}
             className="mx-4"
           />
-        </div>
-      </Link>
+        </Link>
+        {/* <MdDelete
+          size={25}
+          float={"left"}
+          className="mx-2 mt-4"
+          onClick={onOpen}
+        /> */}
+      </div>
+
       <form
         onSubmit={async (e) => {
           e.preventDefault();
@@ -106,6 +162,22 @@ function ViewService() {
                 Authorization: `Bearer ${token}`,
               },
             });
+
+            if (user.statusCode === 403) {
+              localStorage.removeItem("jwtToken");
+              setIsLoggedIn(false);
+              nav("/");
+              toast("Not Authorized! Please Login Again!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+                });
+            }
             const userID = user.data._id;
             const serviceID = data._id;
             setFormData1({
@@ -115,6 +187,16 @@ function ViewService() {
             });
           } catch (error) {
             console.log(error);
+            toast.error(error.response.data.message, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark"
+              });
           }
         }}
       >
@@ -155,26 +237,76 @@ function ViewService() {
 
         <div className="flex flex-row align-bottom mx-3 mb-0 justify-between">
           <div className="text-3xl font-semibold">₹ {data.price}</div>
-          <Button
-            background="#6CA18F"
-            className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] mb-[10vh]"
-            type="submit"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Book Order
-          </Button>
+
+          {loginType === "admin" ? (
+            <Button
+              background="#ff0000"
+              className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh]"
+              type="submit"
+              onClick={onOpen}
+            >
+              Delete Service
+            </Button>
+          ) : (
+            <Button
+              background="#6CA18F"
+              className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] mb-[10vh]"
+              type="submit"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Book Order
+            </Button>
+          )}
         </div>
       </form>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay className="bg-black/60">
+          <AlertDialogContent className="grid  place-content-center h-screen ">
+            <div className="bg-black p-3">
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Service
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure? Do You really want to delete this Service?
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose} className="mx-1">
+                  Cancel
+                </Button>
+                <Button
+                  className="bg-[#ff0000] border-3 border-red"
+                  onClick={() => {
+                    handleDelete(id);
+                    onClose();
+                  }}
+                  ml={3}
+                >
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </div>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalOverlay className="bg-black/60" />
         <ModalContent className="grid place-content-center h-screen">
           <div className="bg-black py-10">
             <div className="w-screen grid grid-flow-col justify-content-between mx-9">
-              <ModalHeader className="text-xl text-left">
+              <ModalHeader className="text-xl text-left ">
                 Order Confirmation
               </ModalHeader>
-              <ModalCloseButton className="mr-4" />
+              <ModalCloseButton className="ml-5 w-[3vw] " />
             </div>
             <ModalBody>
               <form
@@ -333,6 +465,19 @@ function ViewService() {
           </div>
         </ModalContent>
       </Modal>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </div>
   );
 }

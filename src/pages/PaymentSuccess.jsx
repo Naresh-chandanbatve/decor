@@ -1,11 +1,11 @@
 import React, {lazy} from "react";
 
-const ViewService = lazy( () => import("../components/Service/ViewService"));
+const PaymentSuccess = lazy( () => import("../components/PaymentSuccess.jsx"));
 
 function paymentSucess() {
     return (
       <>
-        <ViewService />
+        <PaymentSuccess />
       </>
     );
   }

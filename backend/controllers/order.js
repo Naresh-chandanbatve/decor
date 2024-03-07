@@ -3,7 +3,7 @@ import orderModel from '../models/order.js'
 
 /**
  * Route: /order/add
- * Desc: add and update order
+ * Desc: add order
  */
 export const addOrder = async (req, res) => {
     
@@ -40,6 +40,40 @@ export const addOrder = async (req, res) => {
     }
     
 }
+
+
+/**
+ * Route: /order/update/:id
+ * Desc: update the order
+ */
+export const updateOrder = async(req, res) => {
+    const updateData = {
+        status: 'DONE'
+    }
+    try{
+        const updatedItem = await orderModel.findOneAndUpdate(
+            { _id: req.params.id },
+            updateData,
+            { new: true } 
+          );
+
+          if(updateData){
+            return res.status(200).json({
+                message: "order updated successfully",
+                updatedItem
+            })
+          }
+          else{
+            return res.status(404).json({
+                message: "order not updated",
+            })
+          }
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 
 /**
  * route: /order/delete/:orderID
@@ -108,8 +142,8 @@ export const getOrder = async (req, res) => {
 export const getAllOrder = async (req, res) => {
     
     try {
-
-        const result = await orderModel.find();
+         if(req.UserID){
+            const result = await orderModel.find({userID:req.UserID});
         
             if(result){
                 return res.status(200).json({
@@ -122,6 +156,8 @@ export const getAllOrder = async (req, res) => {
                     message: "order not fetched",
                 })
             }
+         }
+     
     } catch (error) {
         console.error(error)
     }

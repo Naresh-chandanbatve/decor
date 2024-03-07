@@ -78,7 +78,6 @@ export const getCart = async (req, res) => {
     try {
         const result = await cartModel.find({ 'userID' : req.UserID});
         
-        
             if(result){
                 return res.status(200).json({
                     message: "order fetched successfully",

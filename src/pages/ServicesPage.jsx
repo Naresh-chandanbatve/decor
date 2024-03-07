@@ -2,6 +2,8 @@ import React, { lazy, useState, useEffect } from "react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost";
 const PORT = import.meta.env.VITE_PORT || 5000;
@@ -74,6 +76,16 @@ function ServicesPage() {
         setServices(response.data.result);
       } catch (error) {
         console.error(error);
+        toast.error(error.response.data.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       }
     };
 
@@ -82,16 +94,16 @@ function ServicesPage() {
 
   return (
     <>
-      <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
+      <div className="flex flex-row w-screen h-[7vh] bg-[#17201E] bg-opacity-[72%]">
         <Link to="/" style={{ color: "white" }}>
           <ChevronLeftIcon
             viewBox="8 0 30 30"
-            boxSize={60}
+            boxSize={50}
             float={"left"}
-            className="mx-[2rem] mt-[2vh]"
+            className="mx-[2rem] mt-[1vh]"
           />
         </Link>
-        <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
+        <div className="mt-[1.5vh] text-2xl basis-3/4 text-left ml-[3vh]">
           Services
         </div>
       </div>
@@ -123,6 +135,19 @@ function ServicesPage() {
         ))}
       </div>
       <Footer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 }

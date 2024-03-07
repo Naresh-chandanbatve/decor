@@ -30,7 +30,7 @@ const swiper = new Swiper(".your-carousel-container", {
   speed: 1500,
 });
 
-function AboutUs() {
+function Privacy() {
   const [isNav, setIsNav] = useState(false);
   const toggleNav = () => {
     setIsNav(!isNav);
@@ -98,36 +98,44 @@ function AboutUs() {
       <div className="w-screen">
         <Navbar toggleNav={toggleNav} />
         {isNav ? <Sidebar toggleNav={toggleNav} /> : <></>}
-        <div className="mt-[10.75vh] text-left m-auto w-fit text-lg">About Us </div>
+        <div className="mt-[10.75vh] text-left m-auto w-fit text-lg">Privacy Policy </div>
         <div className="text-justify mt-[2vh] mx-5">
-          More than decorators and sound engineers, we are experience
-          architects. We meticulously blend sight and sound to transform your
-          aspirations into unforgettable realities. From intimate gatherings to
-          grand celebrations, we elevate your events with meticulous
-          craftsmanship, innovative solutions, and unwavering dedication.
+          Protecting your privacy is important to DJ Sound Service. This Privacy
+          Policy explains what information we collect from visitors to our
+          website, how we use that information, and how we protect it.
         </div>
-        <div className="text-left mt-[5vh] mx-5">What Sets Us Apart</div>
+        <div className="text-left mt-[5vh] mx-5">Information We Collect</div>
         <div className="text-justify mb-[5vh] mt-[2vh] mx-5">
           <ul>
             <li>
-              Passionate and Talented Team: Our team consists of experienced
-              decorators and sound technicians who are dedicated to their craft.
-              We are creative thinkers, problem solvers, and meticulous in our
-              execution.
+              Information you voluntarily provide: This includes information you
+              provide when you contact us through a form, email, or phone call.
+              This may include your name, email address, phone number, event
+              details, and any other information you choose to share.
             </li>
             <br />
             <li>
-              Unmatched Service: We go the extra mile to understand your unique
-              needs and preferences. We offer personalized consultations,
-              seamless planning, and reliable execution, ensuring your event
-              runs smoothly and stress-free.
+              Information collected automatically: When you visit our website,
+              we may automatically collect information about your device, such
+              as your IP address, browser type, and the pages you visit. This
+              information is used to improve the functionality of our website
+              and understand how visitors use it.
             </li>
             <br />
             <li>
-              Extensive Inventory: We boast a diverse collection of high-quality
-              décor and sound equipment. From elegant drapes and lighting to
-              crystal-clear sound systems and special effects, we have
-              everything you need to create the perfect ambiance.
+               We use the information we collect to:
+              Respond to your inquiries and requests Provide you with DJ
+              services Send you information about our services and promotions
+              (with your consent) Improve our website
+            </li>
+          </ul>
+          <div className="text-left mt-[5vh]">How We Use Your Information</div>
+          <ul className="mt-[2vh]">
+          <li>
+               We use the information we collect to:
+              Respond to your inquiries and requests Provide you with DJ
+              services Send you information about our services and promotions
+              (with your consent) Improve our website
             </li>
           </ul>
         </div>
@@ -138,4 +146,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default Privacy;

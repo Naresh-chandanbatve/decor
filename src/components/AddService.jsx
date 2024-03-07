@@ -9,6 +9,8 @@ import Footer from "./LandingPage/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
@@ -80,14 +82,42 @@ function AddService() {
         // }
       } else if (response.status === 400) {
         console.log("user not found");
+        toast("Something went Wrong!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       } else {
         // Handle unexpected response status
         console.error("Unexpected response:", response.status);
+        toast("Failed to Add the service!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       }
     } catch (error) {
-      // Handle errors (e.g., network issues, invalid credentials)
       console.error("Sign-in error:", error);
-      // ... display error message to user
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
     }
   }
 
@@ -233,6 +263,19 @@ function AddService() {
         </Button>
       </form>
       <Footer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 }

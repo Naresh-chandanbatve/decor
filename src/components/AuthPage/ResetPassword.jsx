@@ -2,6 +2,8 @@ import React from "react";
 import { Input, Box, flexbox } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ResetPassword() {
   return (

@@ -8,6 +8,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../App";
 import axios from "axios";
 import * as CryptoJS from "crypto-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
@@ -47,8 +49,9 @@ function SignInPage({ toggleForm }) {
         console.log("Sign-in successful!");
         const token = response.data.token;
 
-        localStorage.setItem("jwtToken", encryptedToken);
+        localStorage.setItem("jwtToken", token);
         // ... navigate to protected home page
+
         if (response.data.isAdmin) {
           setLoginType("admin");
           setIsLoggedIn(true);
@@ -60,13 +63,43 @@ function SignInPage({ toggleForm }) {
         }
       } else if (response.status === 400) {
         console.log("user not found");
+        toast("User not Found", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       } else {
         // Handle unexpected response status
         console.error("Unexpected response:", response.status);
+        toast("Could not sign in! Please Login Again!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
       }
     } catch (error) {
       // Handle errors (e.g., network issues, invalid credentials)
       console.error("Sign-in error:", error);
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
       // ... display error message to user
     }
   }
@@ -81,6 +114,7 @@ function SignInPage({ toggleForm }) {
       </div>
       <form onSubmit={handleSubmit}>
         <Input
+        type="email"
           variant="outline"
           paddingLeft={20}
           placeholder="email"
@@ -97,6 +131,7 @@ function SignInPage({ toggleForm }) {
           onChange={handleChange}
         ></Input>
         <Input
+        type="password"
           variant="outline"
           paddingLeft={20}
           placeholder="password"
@@ -162,6 +197,19 @@ function SignInPage({ toggleForm }) {
         <p className="inline text-[#88AAA3]">Terms and Condition </p>
         and <p className="inline text-[#88AAA3]">Privacy Policy</p>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 }

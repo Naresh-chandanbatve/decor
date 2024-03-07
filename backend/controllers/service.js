@@ -13,7 +13,7 @@ export const addService = async (req, res) => {
     try {
         
         const { title, catagory, price, description } = req.body;
-        const img_url = `${BASE_URL}/service/getImage/`+req.file.filename
+        const img_url = `${BASE_URL}/service/getImage/`+req.file.filename.replace(/\.jpg$/, '')
 
         const result = await serviceModel.create({
             img_url,
@@ -41,13 +41,15 @@ export const addService = async (req, res) => {
 }
 
 
+/**
+ * Route: /service/getImage/:fileName
+ * Desc: get the image from gridfs by its name
+ */
 export const getImageByName = async (req, res) => {
-    console.log("reched")
     const imageName = req.params.filename+'.jpg'
     const gfs = req.app.get('gfs');
     const gridfsBucket = req.app.get('gridfsBucket');
     res.setHeader('Access-Control-Allow-Origin', '*')
-    console.log(imageName)
     gfs.files.findOne({filename:imageName}).then((files) =>{
         if(!files || !files.length){
           return res.status(404).json({
@@ -67,31 +69,17 @@ export const getImageByName = async (req, res) => {
             })
         }
       });
-
-    // gfs.files.find().toArray((err, file) => {
-    //     if(!files || files.length === 0) {
-    //         return res.status(404).json({
-    //             message: "Image not found"
-    //         })
-    //     }
-        
-    // res.json({files})
-    // })
-
-    // res.send(image)
 }
 
 
 /**
- * route: /service/delete
+ * route: /service/delete/:id
  * Desc: Delete a service with id
  */
 export const deleteService = async (req, res) => {
     
     try {
-        const { id } = req.body;
-
-        const result = await serviceModel.findOneAndDelete(id);
+        const result = await serviceModel.deleteOne({_id : req.params.id});
         
             if(result){
                 return res.status(200).json({
@@ -122,8 +110,7 @@ export const getService = async (req, res) => {
         const id = req.params.id
        
 
-        const result = await serviceModel.findById({_id: id});
-        console.log(result)
+        const result = await serviceModel.findById(id);
             if(result){
                 return res.status(200).json({
                     message: "Service fetched successfully",

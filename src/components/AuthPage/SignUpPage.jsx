@@ -4,8 +4,11 @@ import { Button } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import google from "../../assets/google.png";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../App";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
@@ -58,9 +61,17 @@ function SignUpPage({ toggleForm }) {
         console.error("Unexpected response:", response.status);
       }
     } catch (error) {
-      // Handle errors (e.g., network issues, invalid credentials)
       console.error("Sign-in error:", error);
-      // ... display error message to user
+      toast(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
     }
   }
 
@@ -177,6 +188,19 @@ function SignUpPage({ toggleForm }) {
         <p className="inline text-[#88AAA3]">Terms and Condition </p>
         and <p className="inline text-[#88AAA3]">Privacy Policy</p>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   );
 }
