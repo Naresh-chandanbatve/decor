@@ -197,8 +197,8 @@ function SignInPage({ toggleForm }) {
       </Button>
       <div className="text-sm text-center mt-[3vh] mx-[2rem]">
         Creating an account means that you agree with our{" "}
-        <p className="inline text-[#88AAA3]">Terms and Condition </p>
-        and <p className="inline text-[#88AAA3]">Privacy Policy</p>
+        <Link to="/terms"><p className="inline text-[#88AAA3]">Terms and Condition </p></Link>
+        and <Link to="/privacy"><p className="inline text-[#88AAA3]">Privacy Policy</p></Link>
       </div>
       <ToastContainer
         position="top-center"

@@ -154,11 +154,11 @@ function LandingPage() {
     <>
       <div
         onClick={handleWhatsapp}
-        className="fixed bottom-[17%] bg-cover bg-[url('./assets/whatsapp.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
+        className="fixed bottom-[25%] bg-cover bg-[url('./assets/whatsapp.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
       ></div>
       <div className="flex flex-col w-screen h-screen bg-cover bg-[url(./assets/2front.jpg)] opacity-35"></div>
       <div className="absolute mx-auto left-0 right-0 top-0 bg-contain z-0 bg-no-repeat self-center w-[76.8vw] h-[58.25vh]  bg-[url(./assets/frot.png)]"></div>
-      <div className="absolute top-[50vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
+      <div className="absolute top-[45vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
         <Button
           background="#6CA18F"
           className="rounded-[16px] w-[46.66vw] h-[6.65vh] mt-[3vh] mb-[10vh] self-start ml-10"
@@ -166,7 +166,7 @@ function LandingPage() {
         >
           Explore
         </Button>
-        <p className="text-3xl text-left font-sans font-bold m-5 mx-10">
+        <p className="text-3xl text-left font-sans font-bold mx-10">
           Capture the Ultimate Celebration Experience
         </p>
       </div>

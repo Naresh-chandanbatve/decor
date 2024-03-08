@@ -6,6 +6,7 @@ import google from "../../assets/google.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../App";
 import LoadingOverlay from "../loading";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -33,10 +34,7 @@ function SignUpPage({ toggleForm }) {
     setIsLoading(true);
     event.preventDefault();
     try {
-      const response = await axios.post(
-        `${BACK_URL}/auth/signup`,
-        formData
-      );
+      const response = await axios.post(`${BACK_URL}/auth/signup`, formData);
 
       if (response.status === 201) {
         // Handle successful sign-in (e.g., store token, redirect)
@@ -50,10 +48,10 @@ function SignUpPage({ toggleForm }) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
 
-          toggleForm();
+        toggleForm();
       } else if (response.status === 400) {
         console.log("user not found");
       } else {
@@ -70,12 +68,11 @@ function SignUpPage({ toggleForm }) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
-    }  finally {
+        theme: "dark",
+      });
+    } finally {
       setIsLoading(false);
     }
-  
   }
 
   return (
@@ -188,8 +185,13 @@ function SignUpPage({ toggleForm }) {
       </Button>
       <div className="text-sm text-center mt-[3vh] mx-[2rem]">
         Creating an account means that you agree with our{" "}
-        <p className="inline text-[#88AAA3]">Terms and Condition </p>
-        and <p className="inline text-[#88AAA3]">Privacy Policy</p>
+        <Link to="/terms">
+          <p className="inline text-[#88AAA3]">Terms and Condition </p>
+        </Link>
+        and{" "}
+        <Link to="/privacy">
+          <p className="inline text-[#88AAA3]">Privacy Policy</p>
+        </Link>
       </div>
       <ToastContainer
         position="top-center"
@@ -204,7 +206,7 @@ function SignUpPage({ toggleForm }) {
         theme="dark"
         transition:Bounce
       />
-      {isLoading && <LoadingOverlay isOpen={isLoading}/>}
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </>
   );
 }
