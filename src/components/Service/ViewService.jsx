@@ -77,8 +77,8 @@ function ViewService() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     };
 
@@ -99,8 +99,8 @@ function ViewService() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
+        theme: "dark",
+      });
     }
   }
 
@@ -175,8 +175,8 @@ function ViewService() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark"
-                });
+                theme: "dark",
+              });
             }
             const userID = user.data._id;
             const serviceID = data._id;
@@ -187,16 +187,9 @@ function ViewService() {
             });
           } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message, {
-              position: "top-center",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark"
-              });
+            localStorage.removeItem("jwtToken");
+            setIsLoggedIn(false);
+            nav("/auth");
           }
         }}
       >

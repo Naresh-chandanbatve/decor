@@ -92,7 +92,7 @@ function LandingPage() {
       title: "Small Birthday Decoration",
       price: "3000",
       imagePath:
-        "http://localhost:5000/service/getImage/01adbcbabde7fd06e14c2ae0a57cbb1e.png",
+        "/assets/23-CYX5G_Ke.png",
       description:
         "thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description ",
     },
@@ -109,6 +109,14 @@ function LandingPage() {
       title: "Item 2",
       price: "3000",
       imagePath: "/assets/23-CYX5G_Ke.png",
+      description: "short one here",
+    },
+    ,
+    {
+      id: 4,
+      title: "Merrage Sound System",
+      price: "3000",
+      imagePath: "/assets/dj-BPce03oC.png",
       description: "short one here",
     },
     // ... more data items
@@ -191,15 +199,17 @@ function LandingPage() {
             ></div>
           </div>
         </div>
-        <div className="flex flex-row text-justify items-center">
-          <div className="flex flex-col">
-            <div className="w-fit mx-[3vh] font-bold">3. Event Management</div>
+        <div className="flex flex-col text-justify items-center">
+        <div className="w-fit mx-[3vh] font-bold self-start">3. Event Management</div>
+          <div className="flex flex-row">
+            
             <div className="bg-[url(./assets/event.png)] h-[17.58vh] w-[41.21vw] bg-no-repeat m-[3vh]"></div>
-          </div>
-          <div className="mr-[3vh]">
+            <div className="mr-[3vh] w-[41.21vw]">
             Take the stress out of planning your event with our experienced
             event managers who will handle everything from logistics to vendor
           </div>
+          </div>
+          
         </div>
 
         <div className="my-[7vh] no-scrollbar">

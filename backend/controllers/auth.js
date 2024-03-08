@@ -7,6 +7,7 @@ import generateToken from "../middlewares/generateToken.js";
 
 const USER_SECRET = process.env.USER_SECRET;
 const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
+const FRONT_URL = process.env.FRONT_URL || 'http://localhost:5000';
 
 /**
  * route: /auth/signup
@@ -86,7 +87,8 @@ export const signup = async (req, res)=>{
 
           if(result){
             const token = generateToken(result, USER_SECRET, "300s");
-            const url = `${BASE_URL}/auth/verify?token=${token}`;
+            const encoded = encodeURIComponent(token)
+            const url = `${BASE_URL}/auth/verify?token=${encoded}`;
       
             const options = {
               name: result.name,
@@ -154,6 +156,53 @@ export const signin = async (req, res)=>{
 
 
 
+export const forgotpass = async (req, res)=>{
+
+  try {
+    const { email } = req.body;
+        const user = await userModel.findOne({email})
+
+        if(user){
+
+          const token = generateToken(user, USER_SECRET, "300s");
+          const url = `${FRONT_URL}/reset?token=${token}`;
+    
+          const options = {
+            name: user.name,
+            email: user.email,
+            subject: "Reset Password",
+            message_Content:
+              "<p> Hi " +
+              user.name +
+              ",<br /> Please click on the below to reset your password. This Reset link is valid for 5:00 minutes <br /> <a href =" +
+              url +
+              " >Verify</a></p> ",
+          };
+          
+          await sendEmail(options);
+
+          return res.status(200).json({
+            success: true,
+            message: "verification link sent successfully",
+          });
+
+        }
+        else{
+          return res.status(400).json({
+            success: false,
+            message: "User doesn't exist",
+          });
+        }
+ 
+       
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+
+}
+
+
 
 
 
@@ -186,6 +235,46 @@ export const verifyEmail = async (req, res) => {
       verifieduser,
     });
   } catch (error) {
+    res.status(403).json({
+      success: false,
+      message: error,
+    });
+  }
+};
+
+
+export const resetpass = async (req, res) => {
+  try {
+    const UserID = req.UserID;
+
+    const { newPassword, confirmPassword } = req.body; 
+
+    if(newPassword !== confirmPassword) {
+      res.status(404).json({
+        success: false,
+        message: "password doesnt match",
+      })
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 12)
+
+    if(UserID){
+      const response = await userModel.findByIdAndUpdate({
+        _id: UserID,
+        password: hashedPassword,
+      })
+
+      if(response){
+        res.status(200).json({
+          success: true,
+          message: "Password reset Successfully",
+        });
+      }
+      
+ 
+    }
+
+  } catch (error) {
+    console.log(error);
     res.status(403).json({
       success: false,
       message: error,
