@@ -263,7 +263,7 @@ function ViewService() {
         <AlertDialogOverlay className="bg-black/60">
           <AlertDialogContent className="grid  place-content-center h-screen ">
             <div className="bg-black p-3">
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              <AlertDialogHeader fontSize="2xl" fontWeight="bold">
                 Delete Service
               </AlertDialogHeader>
 

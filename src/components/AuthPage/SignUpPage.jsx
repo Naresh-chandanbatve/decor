@@ -3,9 +3,10 @@ import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
 import google from "../../assets/google.png";
-import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../App";
+import LoadingOverlay from "../loading";
+import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function SignUpPage({ toggleForm }) {
-  const nav = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const { setLoginType, setIsLoggedIn } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
@@ -29,8 +30,8 @@ function SignUpPage({ toggleForm }) {
   };
 
   async function handleSubmit(event) {
+    setIsLoading(true);
     event.preventDefault();
-
     try {
       const response = await axios.post(
         `${BACK_URL}/auth/signup`,
@@ -39,21 +40,20 @@ function SignUpPage({ toggleForm }) {
 
       if (response.status === 201) {
         // Handle successful sign-in (e.g., store token, redirect)
-        console.log("Sign-in successful!");
-        const token = response.data.token;
+        console.log("Sign-up successful!");
 
-        const encryptedToken = encrypt(token, "your_secure_key");
-        localStorage.setItem("jwtToken", encryptedToken);
-        // ... navigate to protected home page
-        if (response.data.isAdmin) {
-          setLoginType("admin");
-          setIsLoggedIn(true);
-          nav("/auth");
-        } else {
-          setLoginType("user");
-          setIsLoggedIn(true);
-          nav("/auth");
-        }
+        toast.success("Account created successfully", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
+
+          toggleForm();
       } else if (response.status === 400) {
         console.log("user not found");
       } else {
@@ -61,7 +61,7 @@ function SignUpPage({ toggleForm }) {
         console.error("Unexpected response:", response.status);
       }
     } catch (error) {
-      console.error("Sign-in error:", error);
+      console.error("Sign-up error:", error);
       toast(error.response.data.message, {
         position: "top-center",
         autoClose: 3000,
@@ -72,7 +72,10 @@ function SignUpPage({ toggleForm }) {
         progress: undefined,
         theme: "dark"
         });
+    }  finally {
+      setIsLoading(false);
     }
+  
   }
 
   return (
@@ -118,7 +121,7 @@ function SignUpPage({ toggleForm }) {
           paddingLeft={20}
           placeholder="password"
           id="password"
-          name="pasword"
+          name="password"
           className="rounded-full h-[7.14vh] w-[81.86vw] mt-[2vh]"
           fontSize={20}
           borderWidth={1}
@@ -131,8 +134,8 @@ function SignUpPage({ toggleForm }) {
         <Input
           variant="outline"
           paddingLeft={20}
-          id="confirm_password"
-          name="confirm_password"
+          id="confirmPassword"
+          name="confirmPassword"
           placeholder="confirm password"
           className="rounded-full h-[7.14vh] w-[81.86vw] mt-[2vh]"
           fontSize={20}
@@ -201,6 +204,7 @@ function SignUpPage({ toggleForm }) {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading}/>}
     </>
   );
 }

@@ -7,10 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import LoadingOverlay from "../loading";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ResetPassword() {
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const token = decodeURIComponent(searchParams.get("token"));
   const [data, setData] = useState({});
@@ -21,17 +23,30 @@ function ResetPassword() {
     });
   };
   async function handlesubmit(e) {
+    setIsLoading(true);
     e.preventDefault();
+    try {
+      const response = await axios.post(`${BACK_URL}/auth/reset`, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
-    const response = await axios.post(`${BACK_URL}/auth/reset`, data, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-
-    if (response) {
-      console.log(response);
-      toast.success("Password reset successfully!", {
+      if (response) {
+        toast.success("Password reset successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Somehting went wrong!", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -41,6 +56,9 @@ function ResetPassword() {
         progress: undefined,
         theme: "dark",
       });
+    }
+    finally {
+      setIsLoading(false);
     }
   }
 
@@ -123,6 +141,7 @@ function ResetPassword() {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </>
   );
 }

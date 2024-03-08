@@ -18,6 +18,8 @@ export const signup = async (req, res)=>{
     try {
     const { name, username, email, password, confirmPassword, phone, address, img_url } = req.body;
 
+
+
     const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
   const emailDomains = [
@@ -27,6 +29,13 @@ export const signup = async (req, res)=>{
     "aol.com",
     "outlook.com",
   ];
+
+  if (!name || !email || !password || !confirmPassword) {
+    return res.status(404).json({
+      success: false,
+      message: "Please Fill all the Details.",
+    });
+  }
 
   if (name.length < 3) {
     return res
@@ -45,12 +54,7 @@ export const signup = async (req, res)=>{
     return res.status(404).json({
       message: "Please enter a valid email address",
     })};
-    if (!name || !email || !password || !confirmPassword) {
-      return res.status(404).json({
-        success: false,
-        message: "Please Fill all the Details.",
-      });
-    }
+   
     const oldUser = await userModel.findOne({ email });
 
     if (oldUser)
@@ -65,7 +69,7 @@ export const signup = async (req, res)=>{
         message: "Password doesn't Match",
       });
 
-      const isAdmin = false
+      let isAdmin = false
 
       if(email == 'pacharerakesh09@gmail.com'){
         isAdmin = true;

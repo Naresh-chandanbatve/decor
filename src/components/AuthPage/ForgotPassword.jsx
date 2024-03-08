@@ -10,6 +10,8 @@ import axios from "axios";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ForgotPassword() {
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setEmail] = useState({
     email: "",
   });
@@ -20,6 +22,7 @@ function ForgotPassword() {
     });
   };
   async function handlesubmit(e) {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const res = await axios.post(`${BACK_URL}/auth/forgot`, {
@@ -59,6 +62,9 @@ function ForgotPassword() {
         progress: undefined,
         theme: "dark",
       });
+    }
+    finally{
+      setIsLoading(false);
     }
   }
   return (
@@ -127,6 +133,7 @@ function ForgotPassword() {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading}/>}
     </>
   );
 }

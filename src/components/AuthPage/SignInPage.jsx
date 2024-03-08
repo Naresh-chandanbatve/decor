@@ -10,11 +10,14 @@ import axios from "axios";
 import * as CryptoJS from "crypto-js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingOverlay from "../loading";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function SignInPage({ toggleForm }) {
   const nav = useNavigate();
+  
+  const [isLoading, setIsLoading] = useState(false);
   const { setLoginType, setIsLoggedIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
@@ -37,7 +40,7 @@ function SignInPage({ toggleForm }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+     
     try {
       const response = await axios.post(`${BACK_URL}/auth/signin`, {
         email: formData.email,
@@ -210,6 +213,7 @@ function SignInPage({ toggleForm }) {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading}/>}
     </>
   );
 }

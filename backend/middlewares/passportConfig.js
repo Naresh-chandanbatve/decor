@@ -39,7 +39,7 @@ const initializePassport = (app) => {
         return done(null, User);
       }
 
-      const isAdmin = false
+      let isAdmin = false
 
       if(email == 'pacharerakesh09@gmail.com'){
         isAdmin = true;
