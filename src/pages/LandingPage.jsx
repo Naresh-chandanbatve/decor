@@ -161,13 +161,13 @@ function LandingPage() {
       <div className="absolute top-[50vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
         <Button
           background="#6CA18F"
-          className="rounded-[16px] w-[46.66vw] h-[6.65vh] mt-[3vh] mb-[10vh]"
+          className="rounded-[16px] w-[46.66vw] h-[6.65vh] mt-[3vh] mb-[10vh] self-start ml-10"
           onClick={() => handleScroll(RefVariable)}
         >
           Explore
         </Button>
-        <p className="text-3xl font-sans font-bold m-5 mx-10">
-          Elevate your Celebrations with DJ Raku Sounds and Decor
+        <p className="text-3xl text-left font-sans font-bold m-5 mx-10">
+          Capture the Ultimate Celebration Experience
         </p>
       </div>
       <Navbar toggleNav={toggleNav} />
