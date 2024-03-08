@@ -153,7 +153,7 @@ export const getAllOrder = async (req, res) => {
             }
             else{
                 return res.status(404).json({
-                    message: "order not fetched",
+                   message: "order not fetched",
                 })
             }
          }
@@ -162,4 +162,34 @@ export const getAllOrder = async (req, res) => {
         console.error(error)
     }
     
-}
+} 
+
+
+
+/**
+ * Route: /order/all
+ * Descr: view all order
+ */
+export const getAdminOrder = async (req, res) => {
+    
+    try {
+            const result = await orderModel.find();
+        
+            if(result){
+                return res.status(200).json({
+                    message: "order fetched successfully",
+                    result
+                })
+            }
+            else{
+                return res.status(404).json({
+                   message: "order not fetched",
+                })
+            }
+         
+     
+    } catch (error) {
+        console.error(error)
+    }
+    
+} 

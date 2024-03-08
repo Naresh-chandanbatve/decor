@@ -34,11 +34,16 @@ function Past() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("jwtToken");
-        const response = await axios.get(`${BACK_URL}/order/all`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        let response;
+        if (loginType === "admin") {
+          response = await axios.get(`${BACK_URL}/order/admin`);
+        } else {
+          response = await axios.get(`${BACK_URL}/order/all`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        }
         if (response.status == 403) {
           localStorage.removeItem("jwtToken");
           setIsLoggedIn(false);

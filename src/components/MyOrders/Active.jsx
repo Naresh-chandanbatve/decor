@@ -26,20 +26,26 @@ function Active() {
   const [orders, setOrders] = useState([]);
 
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
-  useContext(AuthContext);
+    useContext(AuthContext);
   const nav = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("jwtToken");
-        const response = await axios.get(`${BACK_URL}/order/all`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if(response.statusCode === 403){
-          localStorage.removeItem('jwtToken')
-          setIsLoggedIn(false)
+        let response;
+        if (loginType === "admin") {
+          response = await axios.get(`${BACK_URL}/order/admin`);
+        } else {
+          response = await axios.get(`${BACK_URL}/order/all`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        }
+
+        if (response.statusCode === 403) {
+          localStorage.removeItem("jwtToken");
+          setIsLoggedIn(false);
           toast("Not Authorized! Please Login Again!", {
             position: "top-center",
             autoClose: 3000,
@@ -48,10 +54,10 @@ function Active() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark"
-            });
-          nav('/')
-        } 
+            theme: "dark",
+          });
+          nav("/");
+        }
         setOrders(response.data.result);
       } catch (error) {
         console.error(error);
@@ -63,8 +69,8 @@ function Active() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     };
 
@@ -127,8 +133,8 @@ function Active() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark"
-            });
+            theme: "dark",
+          });
         }
       };
 
@@ -157,8 +163,8 @@ function Active() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     }
 
@@ -191,24 +197,21 @@ function Active() {
               {fetchedData.result.title}
             </div>
             <div className="flex flex-row items-center">
-            <FaRegClock size={12} className="mr-[1vh]" />
+              <FaRegClock size={12} className="mr-[1vh]" />
               <div className="text-left text-[10px]">
                 {toTimeString(data.time_slot.start_time)} -{" "}
                 {toTimeString(data.time_slot.end_time)}
               </div>
-              
             </div>
-            
-          <div className="flex flex-row items-baseline text-base h-fit justify-between">
-            <div className="text-left align-text-bottom h-fit text-[#E8E8E8]">
-              {formattedDate}
-              
+
+            <div className="flex flex-row items-baseline text-base h-fit justify-between">
+              <div className="text-left align-text-bottom h-fit text-[#E8E8E8]">
+                {formattedDate}
+              </div>
+              <div className="text-right align-baseline text-lg h-fit text-white ">
+                ₹ {fetchedData.result.price}
+              </div>
             </div>
-            <div className="text-right align-baseline text-lg h-fit text-white ">
-              ₹ {fetchedData.result.price}
-            </div>
-          </div>
-           
           </div>
         </div>
         <AlertDialog
@@ -252,12 +255,14 @@ function Active() {
 
   return (
     <div className="grid content-start overflow-y-scroll h-[80vh] mt-5">
-      {orders.filter((item) => item.status === "PAID" || item.status === "PENDING").map((item) => (
-        <Link to={`/vieworder?id=${item._id}`} style={{ color: "white" }}>
-          <MyComponent key={item._id} data={item} />
-        </Link>
-      ))}
-        <ToastContainer
+      {orders
+        .filter((item) => item.status === "PAID" || item.status === "PENDING")
+        .map((item) => (
+          <Link to={`/vieworder?id=${item._id}`} style={{ color: "white" }}>
+            <MyComponent key={item._id} data={item} />
+          </Link>
+        ))}
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}

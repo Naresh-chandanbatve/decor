@@ -79,7 +79,7 @@ function Sidebar({ toggleNav }) {
         <>
           {loginType === "user" && (
             <>
-              <Link
+              {/* <Link
                 to="/myprofile"
                 style={{ color: "white" }}
                 className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]"
@@ -90,7 +90,7 @@ function Sidebar({ toggleNav }) {
                   className="justify-self-start mx-[4vw]"
                 />
                 <div className="text-lg mx-[4vw]">My Profile</div>
-              </Link>
+              </Link> */}
               <Link
                 to="/mycart"
                 style={{ color: "white" }}
@@ -134,7 +134,7 @@ function Sidebar({ toggleNav }) {
           )}
           {loginType === "admin" && (
             <>
-              <Link
+              {/* <Link
                 to="/myprofile"
                 style={{ color: "white" }}
                 className="flex flex-row my-3 mx-4 rounded-xl py-1 hover:bg-[#6ca18f] hover:bg-opacity-[49%]"
@@ -145,7 +145,7 @@ function Sidebar({ toggleNav }) {
                   className="justify-self-start mx-[4vw]"
                 />
                 <div className="text-lg mx-[4vw]">My Profile</div>
-              </Link>
+              </Link> */}
               <Link
                 to="/myorders"
                 style={{ color: "white" }}
