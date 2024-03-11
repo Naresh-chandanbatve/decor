@@ -41,7 +41,7 @@ const initializePassport = (app) => {
 
       let isAdmin = false
 
-      if(email == 'pacharerakesh09@gmail.com'){
+      if(profile.emails[0].value == 'pacharerakesh09@gmail.com'){
         isAdmin = true;
       }
   
