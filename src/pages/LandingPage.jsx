@@ -158,10 +158,10 @@ function LandingPage() {
       ></div>
       <div className="flex flex-col w-screen h-screen bg-cover bg-[url(./assets/2front.jpg)] opacity-35"></div>
       <div className="absolute mx-auto left-0 right-0 top-0 bg-contain z-0 bg-no-repeat self-center w-[76.8vw] h-[58.25vh]  bg-[url(./assets/frot.png)]"></div>
-      <div className="absolute top-[45vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
+      <div className="absolute top-[50vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
         <Button
           background="#6CA18F"
-          className="rounded-[16px] w-[46.66vw] h-[6.65vh] mt-[3vh] mb-[10vh] self-start ml-10"
+          className="rounded-[16px] w-[46.66vw] h-[6.65vh] mt-[3vh] mb-[15vh] self-start ml-10"
           onClick={() => handleScroll(RefVariable)}
         >
           Explore

@@ -83,6 +83,7 @@ function SignUpPage({ toggleForm }) {
       </div>
       <form onSubmit={handleSubmit}>
         <Input
+          type="text"
           variant="outline"
           paddingLeft={20}
           placeholder="name"
@@ -99,6 +100,7 @@ function SignUpPage({ toggleForm }) {
           alt="name"
         ></Input>
         <Input
+          type="email"
           variant="outline"
           paddingLeft={20}
           id="email"
@@ -114,6 +116,7 @@ function SignUpPage({ toggleForm }) {
           onChange={handleChange}
         ></Input>
         <Input
+          type="password"
           variant="outline"
           paddingLeft={20}
           placeholder="password"
@@ -129,6 +132,7 @@ function SignUpPage({ toggleForm }) {
           onChange={handleChange}
         ></Input>
         <Input
+          type="password"
           variant="outline"
           paddingLeft={20}
           id="confirmPassword"
