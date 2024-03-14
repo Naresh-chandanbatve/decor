@@ -6,7 +6,7 @@ import crypto from 'crypto'
 const APP_ID = process.env.APP_ID ;
 const SECRET_KEY = process.env.SECRET_KEY ;
 const BACK_URL = process.env.BACK_URL || "http://localhost:5000";
-const FRONT_URL = process.env.BACK_URL || "http://localhost:5173";
+const FRONT_URL = process.env.FRONT_URL || "http://localhost:5173";
 
 Cashfree.XClientId = APP_ID;
 Cashfree.XClientSecret = SECRET_KEY;
