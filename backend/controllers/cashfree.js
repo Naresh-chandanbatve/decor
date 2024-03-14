@@ -5,7 +5,7 @@ import crypto from 'crypto'
 
 const APP_ID = process.env.APP_ID ;
 const SECRET_KEY = process.env.SECRET_KEY ;
-const BACK_URL = process.env.BACK_URL || "http://localhost:5000";
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 const FRONT_URL = process.env.FRONT_URL || "http://localhost:5173";
 
 Cashfree.XClientId = APP_ID;
@@ -31,7 +31,7 @@ export const createOrder = (req, res) => {
             "customer_phone": "9999999999"
         },
         "order_meta": {
-            "return_url": `${BACK_URL}/cashfree/order/${req.UserID}`,
+            "return_url": `${BASE_URL}/cashfree/order/${req.UserID}`,
             "payment_methods": "cc, dc, ccc, ppc, nb, upi, paypal, emi"
         }
     };
