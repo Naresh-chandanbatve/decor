@@ -25,7 +25,6 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import { FaRegClock } from "react-icons/fa6";
 import axios from "axios";
-import order from "../../../backend/models/order";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
@@ -142,7 +141,7 @@ function ViewOrder() {
   return (
     orderData.date && (
       <div className=" h-screen bg-gradient-to-tl from-[#1A1F1D] from-20% via-[#0A0E0D]/88 via-60% to-[#0A0E0D]/81">
-        <Link to="/" style={{ color: "white" }}>
+        <Link to="/myorders" style={{ color: "white" }}>
           <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
             <ChevronLeftIcon
               viewBox="8 -4 30 30"
