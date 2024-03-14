@@ -73,17 +73,6 @@ function ViewOrder() {
             `${BACK_URL}/service/get/` + orderData.serviceID
           );
           setServiceData(response.data.result);
-        } else {
-          toast("Something went Wrong!", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark"
-            });
         }
       } catch (error) {
         console.error(error);
