@@ -152,6 +152,16 @@ function Active() {
         );
         if (response) {
           console.log("order deleted successfully");
+          toast.success("order deleted successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       } catch (error) {
         console.error(error);

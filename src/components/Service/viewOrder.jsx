@@ -21,7 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { IoLocationSharp } from "react-icons/io5";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { FaRegClock } from "react-icons/fa6";
 import axios from "axios";
@@ -32,7 +32,7 @@ function ViewOrder() {
   const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
 
   const [searchParams] = useSearchParams();
-
+  const nav = useNavigate();
   const [orderData, setOrderData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
 
@@ -57,8 +57,8 @@ function ViewOrder() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     };
 
@@ -105,7 +105,7 @@ function ViewOrder() {
       "Nov",
       "Dec",
     ];
-    return monthNames[monthNumber - 1]; 
+    return monthNames[monthNumber - 1];
   }
 
   function toTimeString(dateTimeString) {
@@ -130,8 +130,9 @@ function ViewOrder() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
+        theme: "dark",
+      });
+      nav("/myorders");
     } catch (error) {
       console.error(error);
     }
@@ -224,18 +225,18 @@ function ViewOrder() {
           </div>
         </form>
         <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition:Bounce
-      />
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition:Bounce
+        />
       </div>
     )
   );
