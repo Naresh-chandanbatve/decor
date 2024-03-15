@@ -322,6 +322,16 @@ function ViewService() {
                         "Order added to cart successfully:",
                         response.data
                       );
+                      toast.success("Order added to cart successfully", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      });
                     } else {
                       const response = await axios.post(
                         `${BACK_URL}/cart/add`,

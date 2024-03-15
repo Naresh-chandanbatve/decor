@@ -178,12 +178,21 @@ function MyCart() {
 
     async function deleteCart(cartID) {
       try {
-        onClose;
         const response = await axios.delete(
           `${BACK_URL}/cart/delete/${cartID}`
         );
         if (response) {
           console.log("cart deleted successfully");
+          toast.success("cart Item deleted successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark"
+            });
         }
       } catch (error) {
         console.error(error);
@@ -197,6 +206,9 @@ function MyCart() {
           progress: undefined,
           theme: "dark"
           });
+      }
+      finally {
+        onClose();
       }
     }
 

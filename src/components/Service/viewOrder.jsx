@@ -105,7 +105,7 @@ function ViewOrder() {
       "Nov",
       "Dec",
     ];
-    return monthNames[monthNumber - 1]; // Adjust index based on zero-based counting
+    return monthNames[monthNumber - 1]; 
   }
 
   function toTimeString(dateTimeString) {
@@ -122,6 +122,16 @@ function ViewOrder() {
     try {
       const response = await axios.put(`${BACK_URL}/order/update/` + id);
       console.log(response.data);
+      toast.success("order added to past successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+        });
     } catch (error) {
       console.error(error);
     }
@@ -140,29 +150,7 @@ function ViewOrder() {
             />
           </div>
         </Link>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            // Handle form 1 submission (store data)
-            // try {
-            //   const token = localStorage.getItem("jwtToken");
-            //   const user = await axios.get(`${BACK_URL}/user/getUser`, {
-            //     headers: {
-            //       Authorization: `Bearer ${token}`,
-            //     },
-            //   });
-            //   const userID = user.data._id;
-            //   const serviceID = data._id;
-            //   setFormData1({
-            //     ...formData1,
-            //     userID: userID,
-            //     serviceID: serviceID,
-            //   });
-            // } catch (error) {
-            //   console.log(error);
-            // }
-          }}
-        >
+        <form>
           <img
             src={serviceData?.img_url || defaultImageUrl}
             alt="Preview"
