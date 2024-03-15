@@ -319,10 +319,10 @@ function ViewService() {
                         }
                       );
                       console.log(
-                        "Order added to cart successfully:",
+                        "Order added successfully:",
                         response.data
                       );
-                      toast.success("Order added to cart successfully", {
+                      toast.success("Order added successfully", {
                         position: "top-center",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -346,6 +346,16 @@ function ViewService() {
                         "Order added to cart successfully:",
                         response.data
                       );
+                      toast.success("Order added to cart successfully", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      });
                     }
                   } catch (error) {
                     console.error("Error submitting data:", error);

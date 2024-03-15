@@ -30,39 +30,24 @@ function Past() {
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
     useContext(AuthContext);
   const nav = useNavigate();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("jwtToken");
-        let response;
-        if (loginType === "admin") {
-          response = await axios.get(`${BACK_URL}/order/admin`);
-        } else {
-          response = await axios.get(`${BACK_URL}/order/all`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        }
-        if (response.status == 403) {
-          localStorage.removeItem("jwtToken");
-          setIsLoggedIn(false);
-          toast("Not Authorized! Please Login Again!", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          nav("/");
-        }
-        setOrders(response.data.result);
-      } catch (error) {
-        console.error(error);
-        toast.error(error.response.data.message, {
+
+  const fetchOrders = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      let response;
+      if (loginType === "admin") {
+        response = await axios.get(`${BACK_URL}/order/admin`);
+      } else {
+        response = await axios.get(`${BACK_URL}/order/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+      if (response.status == 403) {
+        localStorage.removeItem("jwtToken");
+        setIsLoggedIn(false);
+        toast("Not Authorized! Please Login Again!", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -72,10 +57,26 @@ function Past() {
           progress: undefined,
           theme: "dark",
         });
+        nav("/");
       }
-    };
+      setOrders(response.data.result);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    fetchOrders();
   }, []);
 
   const MyComponent = ({ data }) => {
@@ -117,19 +118,19 @@ function Past() {
       return parsedDate.toLocaleTimeString([], options);
     }
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `${BACK_URL}/service/get/${data.serviceID}`
-          );
-          setFetchedData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+    const fetchService = async () => {
+      try {
+        const response = await axios.get(
+          `${BACK_URL}/service/get/${data.serviceID}`
+        );
+        setFetchedData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-      fetchData();
+    useEffect(() => {
+      fetchService();
     }, [data]);
 
     if (!fetchedData) {
@@ -142,6 +143,7 @@ function Past() {
           `${BACK_URL}/order/delete/${orderID}`
         );
         if (response) {
+          console.log(response);
           console.log("order deleted successfully");
           toast.success("order deleted successfully", {
             position: "top-center",
@@ -153,6 +155,8 @@ function Past() {
             progress: undefined,
             theme: "dark",
           });
+          fetchOrders();
+          fetchService();
         }
       } catch (error) {
         console.error(error);
@@ -169,6 +173,12 @@ function Past() {
       }
     }
 
+    const handleDelete = (event) => {
+      event.preventDefault(); // Prevent redirection
+      // Perform intended actions for the component
+      onOpen();
+    };
+
     return (
       <div className="bg-[#303735] bg-opacity-[40%] flex-shrink-0 rounded-3xl w-[95vw] h-[16vh] m-auto my-3 drop-shadow-[0_11px_10px_rgba(0,0,0,0.5)]">
         <div className="flex flex-row justify-between">
@@ -178,7 +188,7 @@ function Past() {
           <div className="flex flex-row">
             <div className="text-xs my-3">{data._id}</div>
             <MdDelete
-              onClick={onOpen}
+              onClick={handleDelete}
               fill="#E8E8E8"
               size={20}
               className="m-2"

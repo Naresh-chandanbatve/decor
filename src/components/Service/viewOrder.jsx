@@ -120,9 +120,9 @@ function ViewOrder() {
 
   async function updateOrder(id) {
     try {
-      const response = await axios.put(`${BACK_URL}/order/update/` + id);
+      // const response = await axios.put(`${BACK_URL}/order/update/` + id);
       console.log(response.data);
-      toast.success("order added to past successfully", {
+      toast.success("order added to past orders", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -132,9 +132,12 @@ function ViewOrder() {
         progress: undefined,
         theme: "dark",
       });
-      nav("/myorders");
+      
     } catch (error) {
       console.error(error);
+    }
+    finally{
+      nav("/myorders");
     }
   }
 
@@ -217,7 +220,6 @@ function ViewOrder() {
             <Button
               background="#6CA18F"
               className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] "
-              type="submit"
               onClick={() => updateOrder(orderData._id)}
             >
               Mark as Done

@@ -83,8 +83,7 @@ export const deleteOrder = async (req, res) => {
     
     try {
 
-        const result = await orderModel.findOneAndDelete(req.params.orderID);
-        console.log(req.params.orderID);
+        const result = await orderModel.deleteOne({_id: req.params.orderID});
         
             if(result){
                 return res.status(200).json({
@@ -167,7 +166,7 @@ export const getAllOrder = async (req, res) => {
 
 
 /**
- * Route: /order/all
+ * Route: /order/admin
  * Descr: view all order
  */
 export const getAdminOrder = async (req, res) => {

@@ -49,7 +49,7 @@ export const deleteCart = async (req, res) => {
     
     try {
 
-        const result = await cartModel.findOneAndDelete({_id: req.params.cartID});
+        const result = await cartModel.deleteOne({_id: req.params.cartID});
         
             if(result){
                 return res.status(200).json({

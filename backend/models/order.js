@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = mongoose.Schema({
  id: { type: String},
  userID: { type: String },
- status: { type: String },
+ status: { type: String, default: 'PENDING' },
  serviceID: { type: String },
  address: { type: String },
  time_slot: {

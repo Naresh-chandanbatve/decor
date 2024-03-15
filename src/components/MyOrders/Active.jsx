@@ -28,40 +28,25 @@ function Active() {
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
     useContext(AuthContext);
   const nav = useNavigate();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("jwtToken");
-        let response;
-        if (loginType === "admin") {
-          response = await axios.get(`${BACK_URL}/order/admin`);
-        } else {
-          response = await axios.get(`${BACK_URL}/order/all`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        }
 
-        if (response.statusCode === 403) {
-          localStorage.removeItem("jwtToken");
-          setIsLoggedIn(false);
-          toast("Not Authorized! Please Login Again!", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          nav("/");
-        }
-        setOrders(response.data.result);
-      } catch (error) {
-        console.error(error);
-        toast.error(error.response.data.message, {
+  const fetchOrders = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      let response;
+      if (loginType === "admin") {
+        response = await axios.get(`${BACK_URL}/order/admin`);
+      } else {
+        response = await axios.get(`${BACK_URL}/order/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+
+      if (response.statusCode === 403) {
+        localStorage.removeItem("jwtToken");
+        setIsLoggedIn(false);
+        toast("Not Authorized! Please Login Again!", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -71,10 +56,26 @@ function Active() {
           progress: undefined,
           theme: "dark",
         });
+        nav("/");
       }
-    };
+      setOrders(response.data.result);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    fetchOrders();
   }, []);
 
   const MyComponent = ({ data }) => {
@@ -116,29 +117,28 @@ function Active() {
       return parsedDate.toLocaleTimeString([], options);
     }
 
+    const fetchService = async () => {
+      try {
+        const response = await axios.get(
+          `${BACK_URL}/service/get/${data.serviceID}`
+        );
+        setFetchedData(response.data);
+      } catch (error) {
+        console.error(error);
+        toast(error.response.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    };
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `${BACK_URL}/service/get/${data.serviceID}`
-          );
-          setFetchedData(response.data);
-        } catch (error) {
-          console.error(error);
-          toast(error.response.message, {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        }
-      };
-
-      fetchData();
+      fetchService();
     }, [data]);
 
     if (!fetchedData) {
@@ -162,6 +162,8 @@ function Active() {
             progress: undefined,
             theme: "dark",
           });
+          fetchOrders();
+          fetchService();
         }
       } catch (error) {
         console.error(error);
@@ -178,6 +180,12 @@ function Active() {
       }
     }
 
+    const handleDelete = (event) => {
+      event.preventDefault(); // Prevent redirection
+      // Perform intended actions for the component
+      onOpen();
+    };
+
     // 303735
     return (
       <div className="bg-[#1A1F1D] bg-opacity-[40%] flex-shrink-0 rounded-3xl w-[95vw] h-[16vh] m-auto my-3 drop-shadow-[0_11px_10px_rgba(0,0,0,0.5)]">
@@ -188,7 +196,7 @@ function Active() {
           <div className="flex flex-row">
             <div className="text-xs my-3">{data._id}</div>
             <MdDelete
-              onClick={onOpen}
+              onClick={handleDelete}
               fill="#E8E8E8"
               size={20}
               className="m-2"

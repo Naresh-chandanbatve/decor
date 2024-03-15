@@ -54,7 +54,7 @@ const ServiceComponent = ({ data }) => {
     <div className="flex flex-col flex-shrink-0 resize-none bg-[#1a2421] h-[27.55vh] w-[41.6vw] rounded-[20px] m-2 mb-5">
       <img
         src={data.img_url}
-        className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
+        className="h-[75%] bg-cover rounded-t-[20px] bg-center w-[197.6px] bg-no-repeat"
       ></img>
       <div className="flex flex-col-reverse flex-grow justify-items-start">
         <div className="w-fit align-self-top mx-2 pb-2">₹ {data.price}</div>

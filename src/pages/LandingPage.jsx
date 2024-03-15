@@ -171,7 +171,7 @@ function LandingPage() {
         </p>
       </div>
       <Navbar toggleNav={toggleNav} />
-      {isNav ? <Sidebar toggleNav={toggleNav} /> : <></>}
+      {isNav && <Sidebar toggleNav={toggleNav} isNav={isNav} />}
       <div className="relative top-0 h-fit bg-[#0A0E0D]">
         <p className="text-2xl pt-[8vh] mx-[3vh] text-white font-bold text-left">
           Our Services
