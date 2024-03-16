@@ -91,8 +91,7 @@ function LandingPage() {
       id: 1,
       title: "Small Birthday Decoration",
       price: "3000",
-      imagePath:
-        "/assets/23-CYX5G_Ke.png",
+      imagePath: "/assets/23-CYX5G_Ke.png",
       description:
         "thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description thi is description ",
     },
@@ -173,10 +172,10 @@ function LandingPage() {
       <Navbar toggleNav={toggleNav} />
       {isNav && <Sidebar toggleNav={toggleNav} isNav={isNav} />}
       <div className="relative top-0 h-fit bg-[#0A0E0D]">
-        <p className="text-2xl pt-[8vh] mx-[3vh] text-white font-bold text-left">
+        <p className="text-3xl pt-[8vh] mx-[3vh] text-white font-bold text-center">
           Our Services
         </p>
-        <div className="flex flex-row text-justify items-center mt-[3vh]">
+        {/* <div className="flex flex-row text-justify items-center mt-[3vh]">
           <div className="flex flex-col">
             <div className="w-fit mx-[3vh] font-bold">1. DJ Booking</div>
             <div className="bg-[url(./assets/dj.png)] h-[17.58vh] w-[41.21vw] bg-no-repeat m-[3vh]"></div>
@@ -210,12 +209,52 @@ function LandingPage() {
           </div>
           </div>
           
+        </div> */}
+
+        <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
+          <img
+            src="../src/assets/djm.png"
+            className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
+          ></img>
+          <div className="text-xl font-bold text-[#EEEEEE] mt-3">
+            DJ Booking
+          </div>
+          <div className="text-[#DDDDDD] text-[17px] mx-9 mt-2">
+            From energetic party DJs to romantic wedding DJs, we have the
+            perfect DJ to set the mood for your event.
+          </div>
+        </div>
+        <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
+          <img
+            src="../src/assets/decorm.png"
+            className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
+          ></img>
+          <div className="text-xl font-bold text-[#EEEEEE] mt-3">
+            Decoration
+          </div>
+          <div className="text-[#DDDDDD] text-[17px] mx-9 mt-2">
+            Create a stunning atmosphere for any occasion with our themed
+            balloon and floral decorations.
+          </div>
+        </div>
+        <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
+          <img
+            src="../src/assets/eventm.png"
+            className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
+          ></img>
+          <div className="text-xl font-bold text-[#EEEEEE] mt-3">
+            Event Management
+          </div>
+          <div className="text-[#DDDDDD] text-[17px] mx-9 mt-2">
+            Enjoy the complete celebration by letting us plan your next event
+            with our experienced team
+          </div>
         </div>
 
         <div className="my-[7vh] no-scrollbar">
           <div className="flex flex-row">
             <div className="text-2xl text-left ml-[3vh] basis-3/4">
-              Services
+              Best Deals
             </div>
             <Link
               to="/services"
