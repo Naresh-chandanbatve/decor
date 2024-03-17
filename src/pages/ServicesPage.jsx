@@ -108,17 +108,17 @@ function ServicesPage() {
         </div>
       </div>
       <div className="flex flex-row w-[95vw] mx-auto overflow-x-scroll mt-[5vh]">
-        <div onClick={()=>setSelectedCatagory("Sound")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 bg-cover bg-[url('./assets/dj.png')] mx-1">
+        <div onClick={()=>setSelectedCatagory("Sound")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 mb-2 bg-cover bg-[url('./assets/dj.png')] mx-1">
           <div className="w-full h-full bg-gradient-to-t from-black via-black/48.4 via-10% to-transparent flex flex-col-reverse">
             <div className="mb-2">DJ Events</div>
           </div>
         </div>
-        <div onClick={()=>setSelectedCatagory("Decoration")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 bg-cover bg-[url('./assets/23.png')] mx-1">
+        <div onClick={()=>setSelectedCatagory("Decoration")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 mb-2 bg-cover bg-[url('./assets/23.png')] mx-1">
           <div className="w-full h-full bg-gradient-to-t from-black via-black/48.4 via-10% to-transparent flex flex-col-reverse">
             <div className="mb-2">Birthday Decoration</div>
           </div>
         </div>
-        <div onClick={()=>setSelectedCatagory("Event")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 bg-cover bg-[url('./assets/23.png')] mx-1">
+        <div onClick={()=>setSelectedCatagory("Event")} className="w-[180.46px] h-[16.307vh] flex-shrink-0 mb-2 bg-cover bg-[url('./assets/23.png')] mx-1">
           <div className="w-full h-full bg-gradient-to-t from-black via-black/48.4 via-10% to-transparent flex flex-col-reverse">
             <div className="mb-2">Birthday Decoration</div>
           </div>

@@ -63,7 +63,7 @@ function LandingPage() {
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2">
         <img
           src={data.img_url}
-          className="h-[75%] bg-cover bg-center w-[197.6px] bg-no-repeat"
+          className="h-[75%] bg-cover bg-center rounded-t-[20px] w-[197.6px] bg-no-repeat"
         ></img>
         <div className="flex flex-col-reverse flex-grow justify-items-start">
           <div className="w-fit align-self-top mx-2 pb-2">₹ {data.price}</div>
@@ -79,7 +79,7 @@ function LandingPage() {
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2">
         <img
           src={data.imagePath}
-          className="h-[100%] bg-cover bg-center w-[100%] bg-no-repeat"
+          className="h-[100%] bg-cover rounded-t-[20px] bg-center w-[100%] bg-no-repeat"
         ></img>
       </div>
     );
@@ -251,34 +251,36 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="my-[7vh] no-scrollbar">
-          <div className="flex flex-row">
-            <div className="text-2xl text-left ml-[3vh] basis-3/4">
-              Best Deals
-            </div>
-            <Link
-              to="/services"
-              style={{ color: "#B9B6B6" }}
-              className="self-center text-[#B9B6B6]"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-[95vw] m-auto">
-            {services.map((item) => (
-              <Link to={`/view?id=${item._id}`} style={{ color: "white" }}>
-                <MyComponent key={item._id} data={item} />
+        <div className="bg-[#131C19] mt-[14vh] pt-[6vh] pb-[8vh]">
+          <div className="mb-[7vh] no-scrollbar">
+            <div className="flex flex-row">
+              <div className="text-2xl text-left ml-[3vh] basis-3/4">
+                Best Deals
+              </div>
+              <Link
+                to="/services"
+                style={{ color: "#B9B6B6" }}
+                className="self-center text-[#B9B6B6]"
+              >
+                View All
               </Link>
-            ))}
+            </div>
+            <div className="flex flex-row overflow-x-scroll  mt-[2vh] w-[95vw] m-auto">
+              {services.map((item) => (
+                <Link to={`/view?id=${item._id}`} style={{ color: "white" }}>
+                  <MyComponent key={item._id} data={item} />
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="my-[8vh]">
-          <div className="text-2xl text-left ml-[3vh] basis-3/4">Gallery</div>
-          <div className="flex flex-row overflow-x-scroll mt-[2vh] w-[95vw] m-auto">
-            {jsonData.map((item) => (
-              <MyComponent2 key={item.id} data={item} />
-            ))}
+          <div className="">
+            <div className="text-2xl text-left ml-[3vh] basis-3/4">Gallery</div>
+            <div className="flex flex-row overflow-x-scroll mt-[2vh] w-[95vw] m-auto">
+              {jsonData.map((item) => (
+                <MyComponent2 key={item.id} data={item} />
+              ))}
+            </div>
           </div>
         </div>
 

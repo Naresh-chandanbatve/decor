@@ -59,7 +59,6 @@ export const getImageByName = async (req, res) => {
         
         if(files.contentType=="image/png" || files.contentType=="image/jpg" || files.contentType=="image/jpeg" || files.contentType=="image/webp"){
             const readstream = gridfsBucket.openDownloadStream(files._id);
-            console.log(files)
             res.setHeader('Content-Type', files.contentType);
             readstream.pipe(res)
         }
