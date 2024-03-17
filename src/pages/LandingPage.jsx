@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, lazy, useRef } from "react";
 import { Button } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
-import CryptoJS from "crypto-js";
 import axios from "axios";
 
 const Navbar = lazy(() => import("../components/LandingPage/NavBar"));
@@ -56,11 +55,10 @@ function LandingPage() {
     }
   }
 
-  // component
+  // components
   const MyComponent = ({ data }) => {
-    // Use data.property1, data.property2, etc. to render content
     return (
-      <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2">
+      <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
         <img
           src={data.img_url}
           className="h-[75%] bg-cover bg-center rounded-t-[20px] w-[197.6px] bg-no-repeat"
@@ -74,9 +72,8 @@ function LandingPage() {
   };
 
   const MyComponent2 = ({ data }) => {
-    // Use data.property1, data.property2, etc. to render content
     return (
-      <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2">
+      <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
         <img
           src={data.imagePath}
           className="h-[100%] bg-cover rounded-t-[20px] bg-center w-[100%] bg-no-repeat"
@@ -124,6 +121,9 @@ function LandingPage() {
   const handleWhatsapp = () => {
     window.open("https://wa.me/8412025448", "_blank");
   };
+  const handleCall = () => {
+    window.open("tel:8412025448");
+  };
 
   const RefVariable = useRef(null);
 
@@ -154,7 +154,11 @@ function LandingPage() {
       <div
         onClick={handleWhatsapp}
         className="fixed bottom-[25%] bg-cover bg-[url('./assets/whatsapp.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
-      ></div>
+      />
+      <div
+        onClick={handleCall}
+        className="fixed bottom-[17%] bg-cover bg-[url('./assets/call.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
+      />
       <div className="flex flex-col w-screen h-screen bg-cover bg-[url(./assets/2front.jpg)] opacity-35"></div>
       <div className="absolute mx-auto left-0 right-0 top-0 bg-contain z-0 bg-no-repeat self-center w-[76.8vw] h-[58.25vh]  bg-[url(./assets/frot.png)]"></div>
       <div className="absolute top-[50vh] w-screen h-[50vh] flex flex-col-reverse flex-grow items-center bottom-0 bg-gradient-to-t from-black from-30% via-black/48.4 via-10% to-transparent ">
@@ -175,41 +179,6 @@ function LandingPage() {
         <p className="text-3xl pt-[8vh] mx-[3vh] text-white font-bold text-center">
           Our Services
         </p>
-        {/* <div className="flex flex-row text-justify items-center mt-[3vh]">
-          <div className="flex flex-col">
-            <div className="w-fit mx-[3vh] font-bold">1. DJ Booking</div>
-            <div className="bg-[url(./assets/dj.png)] h-[17.58vh] w-[41.21vw] bg-no-repeat m-[3vh]"></div>
-          </div>
-          <div className="mr-[3vh]">
-            From energetic party DJs to romantic wedding DJs, we have the
-            perfect DJ to set the mood for your event.
-          </div>
-        </div>
-        <div className="flex flex-row text-justify items-center">
-          <div className="ml-[3vh]">
-            Create a stunning atmosphere for any occasion without our themed
-            decorations, balloon, arrangement, and floral designs.
-          </div>
-          <div className="flex flex-col">
-            <div className="w-fit mx-[3vh] font-bold">2. Decoration</div>
-            <div
-              ref={RefVariable}
-              className="bg-[url(./assets/decor.png)] h-[17.58vh] w-[41.21vw] bg-no-repeat m-[3vh]"
-            ></div>
-          </div>
-        </div>
-        <div className="flex flex-col text-justify items-center">
-        <div className="w-fit mx-[3vh] font-bold self-start">3. Event Management</div>
-          <div className="flex flex-row">
-            
-            <div className="bg-[url(./assets/event.png)] h-[17.58vh] w-[41.21vw] bg-no-repeat m-[3vh]"></div>
-            <div className="mr-[3vh] w-[41.21vw]">
-            Take the stress out of planning your event with our experienced
-            event managers who will handle everything from logistics to vendor
-          </div>
-          </div>
-          
-        </div> */}
 
         <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
           <img
@@ -251,11 +220,11 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="bg-[#131C19] mt-[14vh] pt-[6vh] pb-[8vh]">
-          <div className="mb-[7vh] no-scrollbar">
+        <div className="bg-[#131C19] mt-[14vh] pt-[6vh] pb-[15vh]">
+          <div className="mb-[12vh] no-scrollbar">
             <div className="flex flex-row">
               <div className="text-2xl text-left ml-[3vh] basis-3/4">
-                Best Deals
+                Top Deals
               </div>
               <Link
                 to="/services"
