@@ -213,7 +213,7 @@ function LandingPage() {
 
         <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
           <img
-            src="/assets/djm.png"
+            src="./assets/djm.png"
             className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
           ></img>
           <div className="text-xl font-bold text-[#EEEEEE] mt-3">
@@ -226,7 +226,7 @@ function LandingPage() {
         </div>
         <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
           <img
-            src="/assets/decorm.png"
+            src="./assets/decorm.png"
             className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
           ></img>
           <div className="text-xl font-bold text-[#EEEEEE] mt-3">
@@ -239,7 +239,7 @@ function LandingPage() {
         </div>
         <div className="w-[64.53vw] bg-[#6CA18F] h-[47.41vh] m-auto rounded-[23px]  bg-opacity-[16%] mt-[6vh]">
           <img
-            src="/assets/eventm.png"
+            src="./assets/eventm.png"
             className="w-[51.46vw] h-[22.66vh] m-auto pt-5"
           ></img>
           <div className="text-xl font-bold text-[#EEEEEE] mt-3">
