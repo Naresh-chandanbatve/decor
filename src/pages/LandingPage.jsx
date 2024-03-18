@@ -267,10 +267,10 @@ function LandingPage() {
               onClick={() => handleScroll(RefVariable)}
             >
               <div className="text-left mx-4 mt-5 mb-2">
-                Click on any services you like above and Book order
+                Click on any above deals you like and Book order
               </div>
               <div className="flex flex-row items-center pl-4">
-                <div className="text-[#83AAA2] ">View Services</div>
+                <div className="text-[#83AAA2] ">View Deals</div>
                 <FaCircleChevronRight
                   fill="#63827B"
                   className="bg-[#ffffff] rounded-full m-2"
@@ -283,7 +283,7 @@ function LandingPage() {
               onClick={handleCall}
             >
               <div className="text-left mx-4 mt-5 mb-2">
-                Directly make a call/whatsapp with your desired details
+                Directly book an customized order on call/whatsapp
               </div>
               <div className="flex flex-row items-center pl-4">
                 <div className="text-[#83AAA2]">Make a Call</div>
