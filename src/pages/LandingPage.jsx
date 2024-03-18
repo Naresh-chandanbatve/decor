@@ -3,6 +3,7 @@ import { Button } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
 import axios from "axios";
+import { FaCircleChevronRight } from "react-icons/fa6";
 
 const Navbar = lazy(() => import("../components/LandingPage/NavBar"));
 const Sidebar = lazy(() => import("../components/LandingPage/SideBar"));
@@ -76,7 +77,7 @@ function LandingPage() {
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
         <img
           src={data.imagePath}
-          className="h-[100%] bg-cover rounded-t-[20px] bg-center w-[100%] bg-no-repeat"
+          className="h-[100%] bg-cover rounded-[20px] bg-center w-[100%] bg-no-repeat"
         ></img>
       </div>
     );
@@ -153,11 +154,11 @@ function LandingPage() {
     <>
       <div
         onClick={handleWhatsapp}
-        className="fixed bottom-[25%] bg-cover bg-[url('./assets/whatsapp.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
+        className="fixed bottom-[30%] bg-cover bg-[url('./assets/whatsapp.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
       />
       <div
         onClick={handleCall}
-        className="fixed bottom-[17%] bg-cover bg-[url('./assets/call.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
+        className="fixed bottom-[22%] bg-cover bg-[url('./assets/call.png')] drop-shadow-[0_11px_10px_rgba(0,0,0,1.5)] right-0 z-50 h-[50px] w-[50px] m-2"
       />
       <div className="flex flex-col w-screen h-screen bg-cover bg-[url(./assets/2front.jpg)] opacity-35"></div>
       <div className="absolute mx-auto left-0 right-0 top-0 bg-contain z-0 bg-no-repeat self-center w-[76.8vw] h-[58.25vh]  bg-[url(./assets/frot.png)]"></div>
@@ -214,7 +215,10 @@ function LandingPage() {
           <div className="text-xl font-bold text-[#EEEEEE] mt-3">
             Event Management
           </div>
-          <div className="text-[#DDDDDD] text-[17px] mx-9 mt-2">
+          <div
+            className="text-[#DDDDDD] text-[17px] mx-9 mt-2"
+            ref={RefVariable}
+          >
             Enjoy the complete celebration by letting us plan your next event
             with our experienced team
           </div>
@@ -249,6 +253,45 @@ function LandingPage() {
               {jsonData.map((item) => (
                 <MyComponent2 key={item.id} data={item} />
               ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#26291D] pb-[14.97vh] pt-[7vh]">
+          <div className="w-fit mx-4 text-left text-2xl mb-[6vh]">
+            How can you book an order ?
+          </div>
+          <div className="flex flex-row justify-around ">
+            <div
+              className="bg-[#B0BDB9] bg-opacity-[16%] rounded-[17.42px] w-[41.98vw] h-[21.78vh] shadow-2xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
+              onClick={() => handleScroll(RefVariable)}
+            >
+              <div className="text-left mx-4 mt-5 mb-2">
+                Click on any services you like above and Book order
+              </div>
+              <div className="flex flex-row items-center pl-4">
+                <div className="text-[#83AAA2] ">View Services</div>
+                <FaCircleChevronRight
+                  fill="#63827B"
+                  className="bg-[#ffffff] rounded-full m-2"
+                />
+              </div>
+            </div>
+            {/* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */}
+            <div
+              className="bg-[#B0BDB9] bg-opacity-[16%] rounded-[17.42px] w-[41.98vw] h-[21.78vh] shadow-2xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
+              onClick={handleCall}
+            >
+              <div className="text-left mx-4 mt-5 mb-2">
+                Directly make a call/whatsapp with your desired details
+              </div>
+              <div className="flex flex-row items-center pl-4">
+                <div className="text-[#83AAA2]">Make a Call</div>
+                <FaCircleChevronRight
+                  fill="#63827B"
+                  className="bg-[#ffffff] rounded-full m-2"
+                />
+              </div>
             </div>
           </div>
         </div>
