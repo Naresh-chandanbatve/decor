@@ -163,19 +163,19 @@ function ViewOrder() {
 
           <div className="flex flex-row items-center justify-between mx-3 mt-4">
             <div className="">
-              <div className="text-xl text-left font-semibold">
+              <div className="text-xl text-white text-left font-semibold">
                 {serviceData.title}
               </div>
               <div className="flex justify-start text-sm items-center my-2 text-[#CAC4C4]">
                 <IoLocationSharp color="#CAC4C4" />
                 {orderData.address}
               </div>
-              <div className="text-left">
+              <div className="text-left text-white">
                 {getFormattedDate(orderData.date)}
               </div>
             </div>
             <div className="text-sm ">
-              <div className="flex justify-end items-start align-text-top mb-3">
+              <div className="flex justify-end text-white items-start align-text-top mb-3">
                 <div>
                   {toTimeString(orderData.time_slot.start_time)} -{" "}
                   {toTimeString(orderData.time_slot.end_time)}

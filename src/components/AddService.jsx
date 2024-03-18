@@ -65,21 +65,19 @@ function AddService() {
       );
 
       if (response.status === 201 || response.status === 200) {
-        // Handle successful sign-in (e.g., store token, redirect)
-        console.log("Sign-in successful!", response);
-        // const token = response.data.token;
-
-        // const encryptedToken = encrypt(token, "your_secure_key");
-        // localStorage.setItem("jwtToken", encryptedToken);
-        // // ... navigate to protected home page
-        // if (response.data.isAdmin) {
-        //   setLoginType("admin");
-        //   setIsLoggedIn(true);
-        //   nav("/");
-        // } else {
+        toast.success("Service added successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark"
+          });
         setLoginType(loginType);
         nav("/");
-        // }
+        
       } else if (response.status === 400) {
         console.log("user not found");
         toast("Something went Wrong!", {
@@ -125,13 +123,13 @@ function AddService() {
 
   return (
     <>
-      <div className="flex flex-row w-screen bg-[#17201E] bg-opacity-[72%]">
+      <div className="flex flex-row w-screen h-[] bg-[#17201E] bg-opacity-[72%]">
         <Link to="/" style={{ color: "white" }}>
           <ChevronLeftIcon
-            viewBox="8 0 30 30"
+            viewBox="8 -4 30 30"
             boxSize={60}
             float={"left"}
-            className="mx-[2.4rem] mt-[2vh]"
+            className="mx-[2.4rem]"
           />
         </Link>
       </div>

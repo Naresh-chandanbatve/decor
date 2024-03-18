@@ -6,7 +6,7 @@ function LoadingOverlay({ isOpen }) {
   return (
     <Modal isOpen={isOpen}>
       <ModalOverlay className="flex flex-col justify-content-center items-center">
-        <ModalContent p={8} className="h-screen">
+        <ModalContent p={8} className="h-full">
           <div className="grid h-screen items-center justify-center">
             <img src={load} height={100} width={100} className=""></img>
           </div>

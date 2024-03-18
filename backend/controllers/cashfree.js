@@ -67,7 +67,6 @@ export const order = async (req, res) => {
           const orderItem = await orderModel.create(itemData);
 
           const result = await cartModel.findOneAndDelete({ '_id': cartItem._id});
-          console.log(result);
 
           if(result){
             res.redirect(`${FRONT_URL}/successpayment`)

@@ -89,6 +89,16 @@ function ViewService() {
     try {
       const response = await axios.delete(`${BACK_URL}/service/delete/` + id);
       console.log(response.data.message);
+      toast.success("service deleted successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (error) {
       console.error(error);
       toast(error.response.message, {

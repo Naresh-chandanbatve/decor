@@ -305,12 +305,12 @@ function MyCart() {
       <div className="fixed flex flex-row w-screen bg-[#29332F] bg-opacity-[72%]">
         <Link to="/" style={{ color: "white" }}>
           <ChevronLeftIcon
-            viewBox="8 0 30 30"
+            viewBox="8 -4 30 30"
             color="white"
             fill="white"
             boxSize={60}
             float={"left"}
-            className="mx-[2rem] mt-[2vh]"
+            className="mx-[2rem]"
           />
         </Link>
         <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">

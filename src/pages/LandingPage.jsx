@@ -4,6 +4,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import Swiper from "swiper";
 import axios from "axios";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import LoadingOverlay from "../components/loading.jsx";
+import load from "../assets/tube-spinner.svg";
 
 const Navbar = lazy(() => import("../components/LandingPage/NavBar"));
 const Sidebar = lazy(() => import("../components/LandingPage/SideBar"));
@@ -58,12 +60,37 @@ function LandingPage() {
 
   // components
   const MyComponent = ({ data }) => {
+    const [isLoading, setIsLoading] = useState(true); // Track image loading state
+    const [error, setError] = useState(false); // Track image loading error
+
+    useEffect(() => {
+      const image = new Image();
+      image.src = data.img_url; // Initiate image loading
+
+      image.onload = () => setIsLoading(false); // Set loading to false when loaded
+      image.onerror = () => setError(true); // Set error state on loading error
+
+      return () => {
+        // Clean up event listeners on component unmount
+        image.onload = null;
+        image.onerror = null;
+      };
+    }, [data.img_url]);
+
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] w-[197.6px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
-        <img
-          src={data.img_url}
-          className="h-[75%] bg-cover bg-center rounded-t-[20px] w-[197.6px] bg-no-repeat"
-        ></img>
+        {isLoading ? (
+          <img
+            src={load}
+            className="h-[75%] bg-cover bg-center rounded-t-[20px] w-[197.6px] p-[6vh] bg-no-repeat"
+          ></img>
+        ) : (
+          <img
+            src={data.img_url}
+            className="h-[75%] bg-cover bg-center rounded-t-[20px] w-[197.6px] bg-no-repeat"
+          ></img>
+        )}
+
         <div className="flex flex-col-reverse flex-grow justify-items-start">
           <div className="w-fit align-self-top mx-2 pb-2">₹ {data.price}</div>
           <div className="text-xs w-fit mx-2 text-left"> {data.title}</div>
@@ -73,12 +100,34 @@ function LandingPage() {
   };
 
   const MyComponent2 = ({ data }) => {
+    const [isLoading, setIsLoading] = useState(true); // Track image loading state
+    const [error, setError] = useState(false); // Track image loading error
+
+    useEffect(() => {
+      const image = new Image();
+      image.src = data.img_url; // Initiate image loading
+
+      image.onload = () => setIsLoading(false); // Set loading to false when loaded
+      image.onerror = () => setError(true); // Set error state on loading error
+
+      return () => {
+        // Clean up event listeners on component unmount
+        image.onload = null;
+        image.onerror = null;
+      };
+    }, [data.img_url]);
+
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
-        <img
-          src={data.imagePath}
-          className="h-[100%] bg-cover rounded-[20px] bg-center w-[100%] bg-no-repeat"
-        ></img>
+        
+        {isLoading ?<img
+          src={load}
+          className="h-[100%] bg-cover rounded-[20px] p-[8vh] bg-center w-[100%] bg-no-repeat"
+        ></img> : <img
+        src={data.imagePath}
+        className="h-[100%] bg-cover rounded-[20px] bg-center w-[100%] bg-no-repeat"
+      ></img>}
+        
       </div>
     );
   };
