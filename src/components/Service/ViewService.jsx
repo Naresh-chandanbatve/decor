@@ -42,7 +42,7 @@ function ViewService() {
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
     useContext(AuthContext);
   const nav = useNavigate();
-  const defaultImageUrl = "https://img.icons8.com/ios/50/image--v1.png";
+  const defaultImageUrl = "https://raw.githubusercontent.com/Naresh-chandanbatve/decor/main/src/assets/gallary.jpg";
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
@@ -139,7 +139,6 @@ function ViewService() {
 
     for (const [key, value] of Object.entries(formData2)) {
       if (typeof value === "object") {
-        // If value is an object, recursively combine it
         combinedFormData.append(key, combineFormData(value, {}));
       } else {
         combinedFormData.append(key, value);

@@ -30,7 +30,8 @@ const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ViewOrder() {
   // /assets/23-CYX5G_Ke.png
-  const defaultImageUrl = "../../src/assets/gallary.jpg";
+  const defaultImageUrl =
+    "https://raw.githubusercontent.com/Naresh-chandanbatve/decor/main/src/assets/gallary.jpg";
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const nav = useNavigate();
