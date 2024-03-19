@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function AddService() {
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const { loginType, setLoginType, setIsLoggedIn } = useContext(AuthContext);
   const nav = useNavigate();
@@ -48,21 +49,17 @@ function AddService() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+    setIsLoading(true);
     const formdata = new FormData();
     formdata.append("image", formData.image);
     formdata.append("title", formData.title);
     formdata.append("catagory", formData.catagory);
     try {
-      const response = await axios.post(
-        `${BACK_URL}/service/add`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${BACK_URL}/service/add`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 201 || response.status === 200) {
         toast.success("Service added successfully!", {
@@ -73,11 +70,10 @@ function AddService() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
         setLoginType(loginType);
         nav("/");
-        
       } else if (response.status === 400) {
         console.log("user not found");
         toast("Something went Wrong!", {
@@ -88,8 +84,8 @@ function AddService() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       } else {
         // Handle unexpected response status
         console.error("Unexpected response:", response.status);
@@ -101,8 +97,8 @@ function AddService() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.error("Sign-in error:", error);
@@ -114,8 +110,12 @@ function AddService() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
+        theme: "dark",
+      });
+    } finally {
+      setIsLoading(false);
+      setLoginType(loginType);
+      nav("/");
     }
   }
 
@@ -174,6 +174,7 @@ function AddService() {
             hidden="true"
             name="image"
             id="image"
+            required="true"
           />
         </div>
         <label className="flex flex-col px-9 mt-[5vh] text-left">
@@ -190,7 +191,8 @@ function AddService() {
             borderColor="#696969"
             backgroundColor="black"
             onChange={handleChange}
-            alt="email"
+            alt="title"
+            required="true"
           ></Input>
         </label>
 
@@ -200,12 +202,13 @@ function AddService() {
             variant="outline"
             name="catagory"
             id="catagory"
+            required="true"
             className="rounded-2xl h-[7.14vh] w-[81.86vw] bg-black border-[#696969] border-[1px] mt-2 px-3"
             fontSize={20}
             focusBorderColor="#43675B"
             onChange={handleChange}
             _placeholder={{ color: "#4D4D4D" }}
-            alt="email"
+            alt="catagory"
           >
             <option value="">Select a Category</option>
             <option value="Decoration">Decoration</option>
@@ -216,6 +219,7 @@ function AddService() {
         <label className="flex flex-col px-9 mt-[3vh] text-left">
           Price
           <Input
+            required="true"
             variant="outline"
             name="price"
             id="price"
@@ -228,12 +232,13 @@ function AddService() {
             borderColor="#696969"
             onChange={handleChange}
             backgroundColor="black"
-            alt="email"
+            alt="price"
           ></Input>
         </label>
         <label className="flex flex-col px-9 mt-[3vh] text-left">
           Description
           <Textarea
+            required="true"
             variant="outline"
             name="description"
             id="description"
@@ -249,6 +254,7 @@ function AddService() {
               lineHeight: "1.9 em",
               paddingTop: "5px",
             }}
+            alt="description"
           />
         </label>
 
@@ -274,6 +280,7 @@ function AddService() {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </>
   );
 }

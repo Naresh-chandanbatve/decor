@@ -26,8 +26,9 @@ const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function MyCart() {
   const [carts, setCart] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
-  useContext(AuthContext);
+    useContext(AuthContext);
   const nav = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -52,8 +53,8 @@ function MyCart() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark"
-            });
+            theme: "dark",
+          });
         }
       }
     };
@@ -80,6 +81,9 @@ function MyCart() {
   }, [carts]);
 
   const payout = async () => {
+    setIsLoading(true);
+   try {
+    
     const cashfree = Cashfree({
       mode: "sandbox", //or production
     });
@@ -93,9 +97,9 @@ function MyCart() {
         },
       }
     );
-    if(response.statusCode === 403){
-      localStorage.removeItem('jwtToken')
-      setIsLoggedIn(false)
+    if (response.statusCode === 403) {
+      localStorage.removeItem("jwtToken");
+      setIsLoggedIn(false);
       toast("Not Authorized! Please Login Again!", {
         position: "top-center",
         autoClose: 3000,
@@ -104,10 +108,10 @@ function MyCart() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
-      nav('/')
-    } 
+        theme: "dark",
+      });
+      nav("/");
+    }
 
     let checkoutOptions = {
       paymentSessionId: response.data.payment_session_id,
@@ -115,6 +119,15 @@ function MyCart() {
     };
 
     cashfree.checkout(checkoutOptions);
+   } catch (error) {
+     console.error(error);
+   }
+   finally{
+     setIsLoading(false);
+     setLoginType(loginType);
+     nav("/");
+   }
+
   };
 
   const MyComponent = ({ data }) => {
@@ -177,6 +190,7 @@ function MyCart() {
     }
 
     async function deleteCart(cartID) {
+      setIsLoading(true);
       try {
         const response = await axios.delete(
           `${BACK_URL}/cart/delete/${cartID}`
@@ -191,8 +205,8 @@ function MyCart() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark"
-            });
+            theme: "dark",
+          });
         }
       } catch (error) {
         console.error(error);
@@ -204,10 +218,10 @@ function MyCart() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
-      }
-      finally {
+          theme: "dark",
+        });
+      } finally {
+        setIsLoading(false);
         onClose();
       }
     }
@@ -240,7 +254,7 @@ function MyCart() {
               {fetchedData.result.title}
             </div>
             <div className="flex flex-row h-fit">
-              <IoLocationSharp size={12} fill="#CAC4C4"/>
+              <IoLocationSharp size={12} fill="#CAC4C4" />
               <div className="text-[10px] text-left text-[#CAC4C4]">
                 {data.address}
               </div>
@@ -313,7 +327,7 @@ function MyCart() {
             className="mx-[2rem]"
           />
         </Link>
-        <div className="mt-[2vh] pt-[10px] text-2xl basis-3/4 text-left ml-[3vh]">
+        <div className="flex text-2xl basis-3/4 text-left ml-[3vh] items-center">
           My Cart
         </div>
         {/* <Link
@@ -369,6 +383,7 @@ function MyCart() {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </>
   );
 }

@@ -38,10 +38,11 @@ import { AuthContext } from "../../App";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ViewService() {
+  const [isLoading, setIsLoading] = useState(false);
   const { loginType, setLoginType, isLoggedIn, setIsLoggedIn } =
     useContext(AuthContext);
   const nav = useNavigate();
-  const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
+  const defaultImageUrl = "https://img.icons8.com/ios/50/image--v1.png";
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
@@ -86,6 +87,7 @@ function ViewService() {
   }, []);
 
   async function handleDelete(id) {
+    setIsLoading(true);
     try {
       const response = await axios.delete(`${BACK_URL}/service/delete/` + id);
       console.log(response.data.message);
@@ -111,6 +113,10 @@ function ViewService() {
         progress: undefined,
         theme: "dark",
       });
+    } finally {
+      setIsLoading(false);
+      setLoginType(loginType);
+      nav("/");
     }
   }
 
@@ -315,6 +321,7 @@ function ViewService() {
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
+                  setIsLoading(true);
                   var combinedFormData = new FormData();
                   combinedFormData = combineFormData(formData1, formData2);
                   try {
@@ -328,10 +335,7 @@ function ViewService() {
                           },
                         }
                       );
-                      console.log(
-                        "Order added successfully:",
-                        response.data
-                      );
+                      console.log("Order added successfully:", response.data);
                       toast.success("Order added successfully", {
                         position: "top-center",
                         autoClose: 3000,
@@ -369,8 +373,11 @@ function ViewService() {
                     }
                   } catch (error) {
                     console.error("Error submitting data:", error);
+                  } finally {
+                    setIsLoading(false);
+                    setIsModalOpen(false);
+                    nav("/");
                   }
-                  setIsModalOpen(false);
                 }}
               >
                 {/* Form 2 fields */}
@@ -391,6 +398,7 @@ function ViewService() {
                     alt="email"
                     id="date"
                     name="date"
+                    required="true"
                     onChange={handleChange2}
                   ></Input>
                 </label>
@@ -411,6 +419,7 @@ function ViewService() {
                     alt="email"
                     id="start_time"
                     name="start_time"
+                    required="true"
                     onChange={handleChange2}
                   />
                 </label>
@@ -431,6 +440,7 @@ function ViewService() {
                     alt="email"
                     id="end_time"
                     name="end_time"
+                    required="true"
                     onChange={handleChange2}
                   ></Input>
                 </label>
@@ -453,6 +463,7 @@ function ViewService() {
                       lineHeight: "1.9 em",
                       paddingTop: "5px",
                     }}
+                    required="true"
                     onChange={handleChange2}
                   ></Textarea>
                 </label>
@@ -501,6 +512,7 @@ function ViewService() {
         theme="dark"
         transition:Bounce
       />
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </div>
   );
 }

@@ -16,7 +16,7 @@ const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function SignInPage({ toggleForm }) {
   const nav = useNavigate();
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const { setLoginType, setIsLoggedIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({
@@ -30,17 +30,11 @@ function SignInPage({ toggleForm }) {
     });
   };
 
-  function encrypt(data, key) {
-    return CryptoJS.AES.encrypt(data, key).toString();
-  }
 
-  function decrypt(data, key) {
-    return CryptoJS.AES.decrypt(data, key).toString(CryptoJS.enc.Utf8);
-  }
 
   async function handleSubmit(event) {
     event.preventDefault();
-     
+
     try {
       const response = await axios.post(`${BACK_URL}/auth/signin`, {
         email: formData.email,
@@ -48,12 +42,10 @@ function SignInPage({ toggleForm }) {
       });
 
       if (response.status === 201) {
-        // Handle successful sign-in (e.g., store token, redirect)
         console.log("Sign-in successful!");
         const token = response.data.token;
 
         localStorage.setItem("jwtToken", token);
-        // ... navigate to protected home page
 
         if (response.data.isAdmin) {
           setLoginType("admin");
@@ -74,10 +66,9 @@ function SignInPage({ toggleForm }) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       } else {
-        // Handle unexpected response status
         console.error("Unexpected response:", response.status);
         toast("Could not sign in! Please Login Again!", {
           position: "top-center",
@@ -87,11 +78,10 @@ function SignInPage({ toggleForm }) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark"
-          });
+          theme: "dark",
+        });
       }
     } catch (error) {
-      // Handle errors (e.g., network issues, invalid credentials)
       console.error("Sign-in error:", error);
       toast.error(error.response.data.message, {
         position: "top-center",
@@ -101,9 +91,8 @@ function SignInPage({ toggleForm }) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
-        });
-      // ... display error message to user
+        theme: "dark",
+      });
     }
   }
 
@@ -117,7 +106,7 @@ function SignInPage({ toggleForm }) {
       </div>
       <form onSubmit={handleSubmit}>
         <Input
-        type="email"
+          type="email"
           variant="outline"
           paddingLeft={20}
           placeholder="email"
@@ -131,10 +120,11 @@ function SignInPage({ toggleForm }) {
           borderColor="#6CA18F"
           backgroundColor="black"
           alt="email"
+          required="true"
           onChange={handleChange}
         ></Input>
         <Input
-        type="password"
+          type="password"
           variant="outline"
           paddingLeft={20}
           placeholder="password"
@@ -148,6 +138,7 @@ function SignInPage({ toggleForm }) {
           backgroundColor="black"
           alt="password"
           onChange={handleChange}
+          required="true"
         ></Input>
         <Link to="/forgot">
           <p className="text-[#88AAA3] mt-[1vh]">Forgot password</p>
@@ -184,9 +175,7 @@ function SignInPage({ toggleForm }) {
       </div>
       <Button
         onClick={async () => {
-
           window.location.href = `${BACK_URL}/googleAuth/google`;
-
         }}
         padding={0}
         background="#6CA18F"
@@ -197,8 +186,13 @@ function SignInPage({ toggleForm }) {
       </Button>
       <div className="text-sm text-center mt-[3vh] mx-[2rem]">
         Creating an account means that you agree with our{" "}
-        <Link to="/terms"><p className="inline text-[#88AAA3]">Terms and Condition </p></Link>
-        and <Link to="/privacy"><p className="inline text-[#88AAA3]">Privacy Policy</p></Link>
+        <Link to="/terms">
+          <p className="inline text-[#88AAA3]">Terms and Condition </p>
+        </Link>
+        and{" "}
+        <Link to="/privacy">
+          <p className="inline text-[#88AAA3]">Privacy Policy</p>
+        </Link>
       </div>
       <ToastContainer
         position="top-center"
@@ -213,7 +207,7 @@ function SignInPage({ toggleForm }) {
         theme="dark"
         transition:Bounce
       />
-      {isLoading && <LoadingOverlay isOpen={isLoading}/>}
+      {isLoading && <LoadingOverlay isOpen={isLoading} />}
     </>
   );
 }

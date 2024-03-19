@@ -178,6 +178,10 @@ function Active() {
           theme: "dark",
         });
       }
+      finally{
+        setLoginType(loginType);
+        nav("/myorders");
+      }
     }
 
     const handleDelete = (event) => {
@@ -293,6 +297,7 @@ function Active() {
         theme="dark"
         transition:Bounce
       />
+      
     </div>
   );
 }

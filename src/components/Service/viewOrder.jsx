@@ -29,8 +29,9 @@ import axios from "axios";
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
 function ViewOrder() {
-  const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
-
+  // /assets/23-CYX5G_Ke.png
+  const defaultImageUrl = "../../src/assets/gallary.jpg";
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const nav = useNavigate();
   const [orderData, setOrderData] = useState([]);
@@ -119,8 +120,9 @@ function ViewOrder() {
   }
 
   async function updateOrder(id) {
+    setIsLoading(true);
     try {
-      // const response = await axios.put(`${BACK_URL}/order/update/` + id);
+      const response = await axios.put(`${BACK_URL}/order/update/` + id);
       console.log(response.data);
       toast.success("order added to past orders", {
         position: "top-center",
@@ -132,11 +134,10 @@ function ViewOrder() {
         progress: undefined,
         theme: "dark",
       });
-      
     } catch (error) {
       console.error(error);
-    }
-    finally{
+    } finally {
+      setIsLoading(false);
       nav("/myorders");
     }
   }
@@ -156,7 +157,7 @@ function ViewOrder() {
         </Link>
         <form>
           <img
-            src={serviceData?.img_url || defaultImageUrl}
+            src={defaultImageUrl}
             alt="Preview"
             className="h-[34.11vh] mt-9 w-[94vw] mx-3 rounded-2xl"
           />
@@ -217,13 +218,23 @@ function ViewOrder() {
 
           <div className="flex flex-row align-bottom mx-3 mb-0 justify-between">
             <div className="text-3xl font-semibold">₹ {serviceData.price}</div>
-            <Button
-              background="#6CA18F"
-              className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] "
-              onClick={() => updateOrder(orderData._id)}
-            >
-              Mark as Done
-            </Button>
+            {orderData.status == "DONE" ? (
+              <Button
+                background="#6CA18F"
+                className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] "
+                onClick={() => updateOrder(orderData._id)}
+              >
+                Delete
+              </Button>
+            ) : (
+              <Button
+                background="#6CA18F"
+                className="rounded-2xl w-[47.73vw] text-xl py-[1.5vh] "
+                onClick={() => updateOrder(orderData._id)}
+              >
+                Mark as Done
+              </Button>
+            )}
           </div>
         </form>
         <ToastContainer
@@ -239,6 +250,7 @@ function ViewOrder() {
           theme="dark"
           transition:Bounce
         />
+        {isLoading && <LoadingOverlay isOpen={isLoading} />}
       </div>
     )
   );

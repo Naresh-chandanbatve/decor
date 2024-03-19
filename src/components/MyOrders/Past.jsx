@@ -171,6 +171,10 @@ function Past() {
           theme: "dark",
         });
       }
+      finally{
+        setLoginType(loginType);
+        nav("/myorders");
+      }
     }
 
     const handleDelete = (event) => {

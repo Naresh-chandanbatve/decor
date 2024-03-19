@@ -105,7 +105,7 @@ function LandingPage() {
 
     useEffect(() => {
       const image = new Image();
-      image.src = data.img_url; // Initiate image loading
+      image.src = data.imagePath; // Initiate image loading
 
       image.onload = () => setIsLoading(false); // Set loading to false when loaded
       image.onerror = () => setError(true); // Set error state on loading error
@@ -115,7 +115,7 @@ function LandingPage() {
         image.onload = null;
         image.onerror = null;
       };
-    }, [data.img_url]);
+    }, [data.imagePath]);
 
     return (
       <div className="flex flex-col flex-shrink-0 resize-none bg-[#202C29] h-[219px] rounded-[20px] m-2 mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.23)]">
