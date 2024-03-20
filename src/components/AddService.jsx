@@ -119,7 +119,7 @@ function AddService() {
     }
   }
 
-  const defaultImageUrl = "/assets/23-CYX5G_Ke.png";
+  const defaultImageUrl = "https://raw.githubusercontent.com/Naresh-chandanbatve/decor/main/src/assets/gallary.jpg";
 
   return (
     <>
