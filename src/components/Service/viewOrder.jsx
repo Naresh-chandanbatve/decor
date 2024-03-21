@@ -23,6 +23,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
+import LoadingOverlay from "./loading";
 import { FaRegClock } from "react-icons/fa6";
 import axios from "axios";
 

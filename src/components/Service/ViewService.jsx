@@ -34,6 +34,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../App";
+import LoadingOverlay from "../loading";
 
 const BACK_URL = import.meta.env.VITE_BACK_URL || "http://localhost:5000";
 
