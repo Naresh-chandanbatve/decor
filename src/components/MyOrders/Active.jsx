@@ -192,7 +192,7 @@ function Active() {
 
     // 303735
     return (
-      <div className="bg-[#1A1F1D] bg-opacity-[40%] flex-shrink-0 rounded-3xl w-[95vw] h-[16vh] m-auto my-3 drop-shadow-[0_11px_10px_rgba(0,0,0,0.5)]">
+      <div className="bg-[#303735] bg-opacity-[40%] flex-shrink-0 rounded-3xl w-[95vw] h-[16vh] m-auto my-3 drop-shadow-[0_11px_10px_rgba(0,0,0,0.5)]">
         <div className="flex flex-row justify-between">
           <div className="mx-3 mt-2 text-lg text-white">
             {fetchedData.result.catagory}
