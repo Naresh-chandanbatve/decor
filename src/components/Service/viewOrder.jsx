@@ -159,7 +159,7 @@ function ViewOrder() {
         </Link>
         <form>
           <img
-            src={defaultImageUrl}
+            src={serviceData?.img_url || defaultImageUrl}
             alt="Preview"
             className="h-[34.11vh] mt-9 w-[94vw] mx-3 rounded-2xl"
           />
