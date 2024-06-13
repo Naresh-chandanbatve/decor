@@ -35,7 +35,7 @@ Start the server
 ```
 
 #### For Client
-In another termianl, First go to root directory
+In another Terminal, First go to root directory
 
 Install dependencies
 
